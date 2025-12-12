@@ -1,0 +1,630 @@
+threagile_version: 1.0.0
+model_title: "High-Performance Gateway ECU"
+business_criticality: "critical"
+description: "Heterogeneous Computing Gateway with Linux (QM), Adaptive AUTOSAR (ASIL-B), Classic AUTOSAR (ASIL-D), and HSM."
+
+tags_available:
+  - "automotive"
+  - "safety-critical"
+  - "gateway"
+  - "linux"
+  - "autosar-adaptive"
+  - "autosar-classic"
+  - "hsm"
+  - "sovd"
+  - "ti-ipc"
+  - "security"
+  - "ota"
+  - "diagnostics"
+  - "cloud"
+  - "hardware"
+  - "virtualization"
+  - "qm"
+  - "asil-b"
+  - "asil-d"
+  - "real-time"
+  - "connectivity"
+  - "user-facing"
+  - "internet"
+  - "ethernet"
+  - "internal"
+  - "crypto-offload"
+  - "control-path"
+  - "can-fd"
+  - "can-classical"
+  - "some-ip"
+  - "physical"
+  - "safety"
+  - "reverse-proxy"
+  - "adaptive"
+  - "control"
+  - "ingress"
+  - "local"
+  - "classic"
+  - "vm"
+
+data_assets:
+  pki-keys:
+    id: "pki-keys"
+    description: "Private Keys for Identity and Secure Boot"
+    usage: "business"
+    tags: ["security", "hsm"]
+    origin: "crypto-fw"
+    owner: "oem"
+    quantity: "very-few"
+    confidentiality: "strictly-confidential"
+    integrity: "critical"
+    availability: "critical"
+
+  firmware-image:
+    id: "firmware-image"
+    description: "Signed Firmware Updates (OTA)"
+    usage: "devops"
+    tags: ["ota"]
+    origin: "cloud-backend"
+    owner: "oem"
+    quantity: "few"
+    confidentiality: "internal"
+    integrity: "critical"
+    availability: "critical"
+
+  vehicle-control-signals:
+    id: "vehicle-control-signals"
+    description: "Actuation commands (Steering, Braking)"
+    usage: "business"
+    tags: ["safety-critical"]
+    origin: "vehicle-control"
+    owner: "driver"
+    quantity: "many"
+    confidentiality: "internal"
+    integrity: "mission-critical"
+    availability: "mission-critical"
+
+  diagnostic-data:
+    id: "diagnostic-data"
+    description: "SOVD and UDS Diagnostic Requests/Responses"
+    usage: "devops"
+    tags: ["sovd", "diagnostics"]
+    origin: "sovd-gateway"
+    owner: "technician"
+    quantity: "few"
+    confidentiality: "restricted"
+    integrity: "important"
+    availability: "important"
+
+technical_assets:
+  # External Actors
+  cloud-backend:
+    id: "cloud-backend"
+    description: "OEM Cloud / OTA Server"
+    type: "process"
+    usage: "business"
+    used_as_client_by_human: false
+    out_of_scope: true
+    size: "system"
+    technology: "web-service-rest"
+    tags: ["cloud"]
+    internet: true
+    machine: "virtual"
+    encryption: "transparent"
+    owner: "oem"
+    confidentiality: "confidential"
+    integrity: "critical"
+    availability: "critical"
+    data_assets_stored: ["firmware-image"]
+    communication_links:
+      cloud-to-proxy:
+        target: "reverse-proxy"
+        title: "TLS Connection (LTE/5G)"
+        protocol: "https"
+        usage: "business"
+        authentication: "client-certificate"
+        authorization: "technical-user"
+        tags: ["internet", "ingress"]
+        data_assets_sent: ["firmware-image"]
+
+  obd-tool:
+    id: "obd-tool"
+    description: "External OBD-II Diagnostic Tool"
+    type: "external-entity"
+    usage: "devops"
+    used_as_client_by_human: true
+    out_of_scope: true
+    size: "component"
+    technology: "tool"
+    tags: ["diagnostics"]
+    internet: false
+    machine: "physical"
+    encryption: "none"
+    owner: "technician"
+    confidentiality: "restricted"
+    integrity: "important"
+    availability: "important"
+    data_assets_processed: ["diagnostic-data"]
+    communication_links:
+      obd-to-proxy:
+        target: "reverse-proxy"
+        title: "Diagnostic over IP (DoIP)"
+        protocol: "http" # Simplified
+        usage: "devops"
+        authentication: "none" # Often open for read
+        authorization: "none"
+        tags: ["diagnostics", "ingress"]
+        data_assets_sent: ["diagnostic-data"]
+
+  # External ECUs (Endpoints)
+  tcu:
+    id: "tcu"
+    description: "Telematics Control Unit"
+    type: "process"
+    usage: "business"
+    used_as_client_by_human: false
+    out_of_scope: true
+    size: "component"
+    technology: "telematics-control-unit"
+    tags: ["automotive", "connectivity"]
+    internet: true
+    machine: "physical"
+    encryption: "transparent"
+    owner: "oem"
+    confidentiality: "confidential"
+    integrity: "critical"
+    availability: "critical"
+
+  ivi:
+    id: "ivi"
+    description: "In-Vehicle Infotainment"
+    type: "process"
+    usage: "business"
+    used_as_client_by_human: true
+    out_of_scope: true
+    size: "system"
+    technology: "in-vehicle-infotainment"
+    tags: ["automotive", "user-facing"]
+    internet: false
+    machine: "physical"
+    encryption: "none"
+    owner: "driver"
+    confidentiality: "restricted"
+    integrity: "important"
+    availability: "important"
+
+  zone-1-ecu:
+    id: "zone-1-ecu"
+    description: "Zone ECU 1 (Frontend)"
+    type: "process"
+    usage: "business"
+    out_of_scope: true
+    size: "component"
+    technology: "electronic-control-unit"
+    tags: ["automotive"]
+    internet: false
+    machine: "physical"
+    encryption: "none"
+    owner: "oem"
+    confidentiality: "internal"
+    integrity: "critical"
+    availability: "critical"
+
+  zone-2-ecu:
+    id: "zone-2-ecu"
+    description: "Zone ECU 2 (Body)"
+    type: "process"
+    usage: "business"
+    out_of_scope: true
+    size: "component"
+    technology: "electronic-control-unit"
+    tags: ["automotive"]
+    internet: false
+    machine: "physical"
+    encryption: "none"
+    owner: "oem"
+    confidentiality: "internal"
+    integrity: "critical"
+    availability: "critical"
+
+  chassis-ecu:
+    id: "chassis-ecu"
+    description: "Chassis Control Module"
+    type: "process"
+    usage: "business"
+    out_of_scope: true
+    size: "component"
+    technology: "electronic-control-unit"
+    tags: ["automotive", "safety-critical"]
+    internet: false
+    machine: "physical"
+    encryption: "none"
+    owner: "oem"
+    confidentiality: "internal"
+    integrity: "mission-critical"
+    availability: "mission-critical"
+    data_assets_processed: ["vehicle-control-signals"]
+
+  powertrain-ecu:
+    id: "powertrain-ecu"
+    description: "Powertrain Control Module"
+    type: "process"
+    usage: "business"
+    out_of_scope: true
+    size: "component"
+    technology: "electronic-control-unit"
+    tags: ["automotive", "safety-critical"]
+    internet: false
+    machine: "physical"
+    encryption: "none"
+    owner: "oem"
+    confidentiality: "internal"
+    integrity: "mission-critical"
+    availability: "mission-critical"
+    data_assets_processed: ["vehicle-control-signals"]
+
+    # Gateway Hardware Root (SoC)
+  gateway-soc:
+    id: "gateway-soc"
+    description: "J784S4-like SoC Hardware Root"
+    type: "process"
+    usage: "business"
+    out_of_scope: false
+    size: "system"
+    technology: "device"
+    tags: ["automotive", "hardware"]
+    internet: false
+    machine: "physical"
+    encryption: "none"
+    owner: "oem"
+    confidentiality: "internal"
+    integrity: "critical"
+    availability: "critical"
+
+  # VM1 Linux Components
+  reverse-proxy:
+    id: "reverse-proxy"
+    description: "Nginx/Envoy Reverse Proxy & Firewall"
+    type: "process"
+    usage: "business"
+    out_of_scope: false
+    size: "service"
+    technology: "reverse-proxy" # Built-in
+    tags: ["linux", "security"]
+    internet: true
+    machine: "virtual"
+    encryption: "transparent"
+    owner: "oem"
+    confidentiality: "confidential"
+    integrity: "critical"
+    availability: "critical"
+    data_assets_processed: ["diagnostic-data", "firmware-image"]
+    communication_links:
+      proxy-to-sovd:
+        target: "sovd-gateway"
+        title: "Route Diagnostic Req"
+        protocol: "ipc"
+        usage: "devops"
+        authentication: "none"
+        authorization: "none"
+        tags: ["local"]
+        data_assets_sent: ["diagnostic-data"]
+      proxy-to-ota:
+        target: "ota-agent"
+        title: "Route OTA Blob"
+        protocol: "ipc"
+        usage: "devops"
+        authentication: "none"
+        authorization: "none"
+        tags: ["local"]
+        data_assets_sent: ["firmware-image"]
+      proxy-to-telematics:
+        target: "telematics-agent"
+        title: "Route Telemetry"
+        protocol: "ipc"
+        usage: "business"
+        authentication: "none"
+        authorization: "none"
+        tags: ["local"]
+
+  ota-agent:
+    id: "ota-agent"
+    description: "OTA Master Agent"
+    type: "process"
+    usage: "devops"
+    out_of_scope: false
+    size: "service"
+    technology: "client-system"
+    tags: ["linux", "ota"]
+    internet: true
+    machine: "virtual"
+    encryption: "transparent"
+    owner: "oem"
+    confidentiality: "internal"
+    integrity: "critical"
+    availability: "critical"
+    data_assets_processed: ["firmware-image"]
+
+  sovd-gateway:
+    id: "sovd-gateway"
+    description: "Service-Oriented Vehicle Diagnostic Gateway"
+    type: "process"
+    usage: "devops"
+    out_of_scope: false
+    size: "service"
+    technology: "gateway"
+    tags: ["linux", "sovd"]
+    internet: false
+    machine: "virtual"
+    encryption: "transparent"
+    owner: "technician"
+    confidentiality: "restricted"
+    integrity: "important"
+    availability: "important"
+    data_assets_processed: ["diagnostic-data"]
+    communication_links:
+      sovd-to-zone1:
+        target: "zone-1-ecu"
+        title: "DoIP to Zone 1"
+        protocol: "tcp"
+        usage: "devops"
+        authentication: "token"
+        authorization: "technical-user"
+        tags: ["ethernet"]
+        data_assets_sent: ["diagnostic-data"]
+      sovd-to-diagbridge:
+        target: "diag-bridge"
+        title: "TI-IPC (Diag Request)"
+        protocol: "ipc"
+        usage: "devops"
+        authentication: "none"
+        authorization: "none"
+        tags: ["ti-ipc"]
+        data_assets_sent: ["diagnostic-data"]
+
+  telematics-agent:
+    id: "telematics-agent"
+    description: "Cloud Connector / Telematics Client"
+    type: "process"
+    usage: "business"
+    out_of_scope: false
+    size: "service"
+    technology: "client-system"
+    tags: ["linux", "cloud"]
+    internet: true
+    machine: "virtual"
+    encryption: "transparent"
+    owner: "oem"
+    confidentiality: "confidential"
+    integrity: "critical"
+    availability: "critical"
+    communication_links:
+      telematics-to-crypto:
+        target: "crypto-fw"
+        title: "Sign Telemetry"
+        protocol: "ipc"
+        usage: "business"
+        authentication: "none"
+        authorization: "none"
+        tags: ["crypto-offload"]
+
+  # VM2 Adaptive Components
+  vehicle-control:
+    id: "vehicle-control"
+    description: "Vehicle Control Application (ASIL-B)"
+    type: "process"
+    usage: "business"
+    out_of_scope: false
+    size: "application"
+    technology: "autosar-adaptive"
+    tags: ["adaptive", "control"]
+    internet: false
+    machine: "virtual"
+    encryption: "none"
+    owner: "oem"
+    confidentiality: "internal"
+    integrity: "critical"
+    availability: "critical"
+    data_assets_processed: ["vehicle-control-signals"]
+    communication_links:
+      vehicle-control-to-someip:
+        target: "some-ip-gateway"
+        title: "Publish Control State"
+        protocol: "some-ip"
+        usage: "business"
+        authentication: "none"
+        authorization: "none"
+        tags: ["local"]
+        data_assets_sent: ["vehicle-control-signals"]
+      vehicle-control-to-signal-gw:
+        target: "signal-gateway"
+        title: "Control Signals (Shared Mem)"
+        protocol: "ipc"
+        usage: "business"
+        authentication: "none"
+        authorization: "none"
+        tags: ["control-path"]
+        data_assets_sent: ["vehicle-control-signals"]
+
+  some-ip-gateway:
+    id: "some-ip-gateway"
+    description: "SOME/IP Service Gateway"
+    type: "process"
+    usage: "business"
+    out_of_scope: false
+    size: "service"
+    technology: "gateway"
+    tags: ["adaptive", "ethernet"]
+    internet: false
+    machine: "virtual"
+    encryption: "none"
+    owner: "oem"
+    confidentiality: "internal"
+    integrity: "critical"
+    availability: "critical"
+    communication_links:
+      someip-to-ivi:
+        target: "ivi"
+        title: "Visualize Status"
+        protocol: "some-ip"
+        usage: "business"
+        authentication: "none"
+        authorization: "none"
+        tags: ["ethernet"]
+        data_assets_sent: ["vehicle-control-signals"]
+
+  # Classic R5 Components
+  signal-gateway:
+    id: "signal-gateway"
+    description: "PduR / Signal Gateway (ASIL-D)"
+    type: "process"
+    usage: "business"
+    out_of_scope: false
+    size: "component"
+    technology: "autosar-classic"
+    tags: ["classic", "safety-critical"]
+    internet: false
+    machine: "physical"
+    encryption: "none"
+    owner: "oem"
+    confidentiality: "internal"
+    integrity: "mission-critical"
+    availability: "mission-critical"
+    data_assets_processed: ["vehicle-control-signals"]
+    communication_links:
+      signal-gw-to-powertrain:
+        target: "powertrain-ecu"
+        title: "Propulsion Torque Req"
+        protocol: "can-bus"
+        usage: "business"
+        authentication: "none"
+        authorization: "none"
+        tags: ["can-fd", "safety-critical"]
+        data_assets_sent: ["vehicle-control-signals"]
+
+  diag-bridge:
+    id: "diag-bridge"
+    description: "Diagnostic Bridge (UDS/IPC)"
+    type: "process"
+    usage: "devops"
+    out_of_scope: false
+    size: "component"
+    technology: "autosar-classic"
+    tags: ["classic", "diagnostics"]
+    internet: false
+    machine: "physical"
+    encryption: "none"
+    owner: "oem"
+    confidentiality: "restricted"
+    integrity: "important"
+    availability: "important"
+    data_assets_processed: ["diagnostic-data"]
+    communication_links:
+      diag-bridge-to-chassis:
+        target: "chassis-ecu"
+        title: "UDS over CAN"
+        protocol: "can-bus"
+        usage: "devops"
+        authentication: "none"
+        authorization: "none"
+        tags: ["can-classical"]
+        data_assets_sent: ["diagnostic-data"]
+
+  # M4 Security Components
+  crypto-fw:
+    id: "crypto-fw"
+    description: "Cryptomodule Firmware / HSM"
+    type: "datastore"
+    usage: "business"
+    out_of_scope: false
+    size: "component"
+    technology: "hsm"
+    tags: ["hsm", "security"]
+    internet: false
+    machine: "physical"
+    encryption: "data-with-symmetric-shared-key"
+    owner: "oem"
+    confidentiality: "strictly-confidential"
+    integrity: "mission-critical"
+    availability: "mission-critical"
+    data_assets_stored: ["pki-keys"]
+
+  power-manager:
+    id: "power-manager"
+    description: "Power Management & Boot Core"
+    type: "process"
+    usage: "business"
+    out_of_scope: false
+    size: "component"
+    technology: "electronic-control-unit"
+    tags: ["safety"]
+    internet: false
+    machine: "physical"
+    encryption: "none"
+    owner: "oem"
+    confidentiality: "internal"
+    integrity: "critical"
+    availability: "critical"
+    communication_links:
+      power-manager-to-soc:
+        target: "gateway-soc"
+        title: "Watchdog / Reset"
+        protocol: "ipc"
+        usage: "business"
+        authentication: "none"
+        authorization: "none"
+        tags: ["safety"]
+
+trust_boundaries:
+  vehicle-boundary:
+    id: "vehicle-boundary"
+    title: "Vehicle Boundary"
+    description: "Physical perimeter of the vehicle"
+    type: "network-dedicated-hoster"
+    tags: ["physical"]
+    technical_assets_inside: 
+      - "gateway-soc"
+      - "zone-1-ecu"
+      - "zone-2-ecu"
+      - "chassis-ecu"
+      - "powertrain-ecu"
+      - "tcu"
+      - "ivi"
+
+  linux-vm-boundary:
+    id: "linux-vm-boundary"
+    title: "VM1: Embedded Linux (QM)"
+    description: "Connectivity & Diagnostic Domain"
+    type: "execution-environment"
+    tags: ["linux", "qm", "vm"]
+    technical_assets_inside:
+      - "reverse-proxy"
+      - "ota-agent"
+      - "sovd-gateway"
+      - "telematics-agent"
+
+  adaptive-vm-boundary:
+    id: "adaptive-vm-boundary"
+    title: "VM2: Adaptive AUTOSAR (ASIL-B)"
+    description: "Vehicle Control Domain"
+    type: "execution-environment"
+    tags: ["adaptive", "asil-b", "vm"]
+    technical_assets_inside:
+      - "vehicle-control"
+      - "some-ip-gateway"
+
+  classic-r5-boundary:
+    id: "classic-r5-boundary"
+    title: "R5 Cluster: Classic AUTOSAR (ASIL-D)"
+    description: "Real-time Safety Domain"
+    type: "execution-environment"
+    tags: ["classic", "asil-d", "physical"]
+    technical_assets_inside:
+      - "signal-gateway"
+      - "diag-bridge"
+
+  m4-cluster-boundary:
+    id: "m4-cluster-boundary"
+    title: "M4 Cluster: Security & Power"
+    description: "Isolated Security Island"
+    type: "execution-environment"
+    tags: ["hsm", "asil-d", "physical"]
+    technical_assets_inside:
+      - "crypto-fw"
+      - "power-manager"

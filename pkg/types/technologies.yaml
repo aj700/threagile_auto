@@ -499,3 +499,101 @@ web-service-soap:
         processing_end_user_requests: true
         propagate_identity_to_outgoing_targets: true
         web_service: true
+electronic-control-unit:
+    aliases:
+        - ecu
+        - controller
+    description: An Electronic Control Unit (Automotive Controller)
+    attributes:
+        electronic-control-unit: true
+        embedded_component: true
+        backend_related: true
+        high_value_target: true
+        less_protected_type: true
+        no_authentication_required: true
+
+can-bus:
+    aliases:
+        - controller-area-network
+    description: CAN Bus Network (Broadcast, Unencrypted)
+    attributes:
+        can-bus: true
+        protocol: true
+        unencrypted: true
+        broadcast: true
+        no_authentication_required: true
+
+automotive-gateway:
+    description: Central Gateway between vehicle domains
+    attributes:
+        automotive-gateway: true
+        gateway: true
+        security_control_related: true
+        traffic_forwarding: true
+        high_value_target: true
+
+telematics-control-unit:
+    aliases:
+        - tcu
+    description: Connectivity Unit (LTE/5G, GPS)
+    attributes:
+        telematics-control-unit: true
+        iot-device: true
+        gateway: true
+        high_value_target: true
+        frontend_related: true
+        http_internet_access_ok: true
+
+in-vehicle-infotainment:
+    aliases:
+        - ivi
+        - head-unit
+    description: Infotainment System (User-facing)
+    attributes:
+        in-vehicle-infotainment: true
+        web_application: true
+        frontend_related: true
+        less_protected_type: true
+        processing_end_user_requests: true
+
+autosar-classic:
+    description: Classic AUTOSAR Platform (Real-time, Safety-Critical)
+    attributes:
+        autosar-classic: true
+        embedded_component: true
+        backend_related: true
+        high_value_target: true
+        no_authentication_required: true
+
+autosar-adaptive:
+    description: Adaptive AUTOSAR Platform (POSIX-based, High-Performance)
+    attributes:
+        autosar-adaptive: true
+        embedded_component: true
+        backend_related: true
+        high_value_target: true
+        linux: true
+
+linux:
+    aliases:
+        - embedded-linux
+    description: Linux Operating System
+    attributes:
+        linux: true
+        embedded_component: true
+        backend_related: true
+        less_protected_type: true
+
+hypervisor:
+    description: Type-1 or Type-2 Hypervisor
+    attributes:
+        hypervisor: true
+        embedded_component: true
+        backend_related: true
+        high_value_target: true
+
+device:
+    description: Generic Device or Hardware Component
+    attributes:
+        device: true
+        physical: true

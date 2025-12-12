@@ -7,6 +7,7 @@ import (
 	"io/fs"
 
 	"github.com/threagile/threagile/pkg/risks/builtin"
+	"github.com/threagile/threagile/pkg/risks/automotive"
 	"github.com/threagile/threagile/pkg/types"
 )
 
@@ -56,6 +57,10 @@ func GetBuiltInRiskRules() types.RiskRules {
 		builtin.NewWrongTrustBoundaryContentRule(),
 		builtin.NewXmlExternalEntityRule(),
 	} {
+		rules[rule.Category().ID] = rule
+	}
+
+	for _, rule := range automotive.GetAllAutomotiveRisks() {
 		rules[rule.Category().ID] = rule
 	}
 

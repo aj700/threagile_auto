@@ -35,3 +35,9 @@ stats.json
 /config.yaml
 /tmp/
 /threagile.yaml
+
+# Automotive Kit Artifacts
+automotive-output/
+adocReport/
+threagile
+

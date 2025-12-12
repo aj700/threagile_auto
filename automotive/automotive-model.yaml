@@ -1,0 +1,188 @@
+model_title: "Connected Car Architecture"
+business_criticality: "critical"
+description: "High-level architecture of a connected vehicle"
+
+tags_available:
+  - "privacy"
+  - "security"
+  - "cloud"
+  - "automotive"
+  - "connectivity"
+  - "user-facing"
+  - "safety-critical"
+  - "ota"
+  - "internal-network"
+  - "physical"
+
+data_assets:
+  gps-data:
+    id: "gps-data"
+    description: "Vehicle Location Data"
+    usage: "business"
+    tags: ["privacy"]
+    origin: "telematics-unit"
+    owner: "driver"
+    quantity: "very-few"
+    confidentiality: "restricted"
+    integrity: "critical"
+    availability: "operational"
+  
+  firmware-image:
+    id: "firmware-image"
+    description: "ECU Firmware Update"
+    usage: "devops"
+    tags: ["security"]
+    origin: "cloud-backend"
+    owner: "oem"
+    quantity: "many"
+    confidentiality: "confidential"
+    integrity: "critical"
+    availability: "critical"
+
+technical_assets:
+  cloud-backend:
+    id: "cloud-backend"
+    description: "OEM Cloud Platform"
+    type: "process"
+    usage: "business"
+    used_as_client_by_human: false
+    out_of_scope: true
+    justification_out_of_scope: "Managed separately"
+    size: "system"
+    technology: "web-service-rest"
+    tags: ["cloud"]
+    internet: true
+    machine: "virtual"
+    encryption: "transparent"
+    owner: "oem"
+    confidentiality: "confidential"
+    integrity: "critical"
+    availability: "critical"
+    data_assets_stored: ["firmware-image"]
+
+  telematics-unit:
+    id: "telematics-unit"
+    description: "Vehicle Connectivity Unit (TCU)"
+    type: "process"
+    usage: "business"
+    used_as_client_by_human: false
+    out_of_scope: false
+    size: "component"
+    technology: "telematics-control-unit"
+    tags: ["automotive", "connectivity"]
+    internet: true
+    machine: "physical"
+    encryption: "transparent"
+    owner: "oem"
+    confidentiality: "restricted"
+    integrity: "critical"
+    availability: "critical"
+    data_assets_stored: ["gps-data"]
+
+  central-gateway:
+    id: "central-gateway"
+    description: "Central Security Gateway"
+    type: "process"
+    usage: "business"
+    used_as_client_by_human: false
+    out_of_scope: false
+    size: "component"
+    technology: "automotive-gateway"
+    tags: ["automotive", "security"]
+    internet: false
+    machine: "physical"
+    encryption: "transparent"
+    owner: "oem"
+    confidentiality: "restricted"
+    integrity: "critical"
+    availability: "critical"
+
+  infotainment-system:
+    id: "infotainment-system"
+    description: "IVI Head Unit"
+    type: "process"
+    usage: "business"
+    used_as_client_by_human: true
+    out_of_scope: false
+    size: "system"
+    technology: "in-vehicle-infotainment"
+    tags: ["automotive", "user-facing"]
+    internet: false
+    machine: "physical"
+    encryption: "transparent"
+    owner: "driver"
+    confidentiality: "restricted"
+    integrity: "important"
+    availability: "important"
+
+  engine-ecu:
+    id: "engine-ecu"
+    description: "Engine Control Module"
+    type: "process"
+    usage: "business"
+    used_as_client_by_human: false
+    out_of_scope: false
+    size: "component"
+    technology: "electronic-control-unit"
+    tags: ["automotive", "safety-critical"]
+    internet: false
+    machine: "physical"
+    encryption: "none"
+    owner: "oem"
+    confidentiality: "internal"
+    integrity: "critical"
+    availability: "critical"
+
+communication_links:
+  ota-update:
+    source: "cloud-backend"
+    target: "telematics-unit"
+    title: "OTA Firmware Download"
+    protocol: "https"
+    usage: "devops"
+    authentication: "token"
+    authorization: "technical-user"
+    tags: ["ota"]
+    data_assets_sent: ["firmware-image"]
+
+  tcu-to-gateway:
+    source: "telematics-unit"
+    target: "central-gateway"
+    title: "Proprietary Bus Link"
+    protocol: "can-bus"
+    usage: "business"
+    authentication: "none"
+    authorization: "none"
+    tags: ["internal-network"]
+    data_assets_sent: ["firmware-image", "gps-data"]
+  
+  gateway-to-ivi:
+    source: "central-gateway"
+    target: "infotainment-system"
+    title: "Infotainment CAN"
+    protocol: "can-bus"
+    usage: "business"
+    authentication: "none"
+    authorization: "none"
+    tags: ["internal-network"]
+    data_assets_sent: ["gps-data"]
+
+  gateway-to-engine:
+    source: "central-gateway"
+    target: "engine-ecu"
+    title: "Powertrain CAN"
+    protocol: "can-bus"
+    usage: "business"
+    authentication: "none"
+    authorization: "none"
+    tags: ["internal-network"]
+    data_assets_sent: ["firmware-image"]
+
+trust_boundaries:
+  vehicle-boundary:
+    id: "vehicle-boundary"
+    title: "Physical Vehicle Boundary"
+    description: "Everything inside the physical car"
+    type: "network-dedicated-hoster"
+    tags: ["physical"]
+    technical_assets_inside: ["telematics-unit", "central-gateway", "infotainment-system", "engine-ecu"]

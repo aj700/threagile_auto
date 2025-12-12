@@ -63,6 +63,16 @@ const (
 	InProcessLibraryCall
 	InterProcessCommunication
 	ContainerSpawning
+	// Automotive / Embedded
+	CAN
+	CANFD
+	FlexRay
+	LIN
+	IPC
+	SomeIP
+	Local
+	TCP
+	UDP
 )
 
 func ProtocolValues() []TypeEnum {
@@ -115,6 +125,15 @@ func ProtocolValues() []TypeEnum {
 		InProcessLibraryCall,
 		InterProcessCommunication,
 		ContainerSpawning,
+		CAN,
+		CANFD,
+		FlexRay,
+		LIN,
+		IPC,
+		SomeIP,
+		Local,
+		TCP,
+		UDP,
 	}
 }
 
@@ -167,6 +186,15 @@ var ProtocolTypeDescription = [...]TypeDescription{
 	{"in-process-library-call", "Call to local library"},
 	{"inter-process-communication", "Communication between processes via system sockets or systems like dbus"},
 	{"container-spawning", "Spawn a container"},
+	{"can-bus", "Controller Area Network"},
+	{"can-fd", "Controller Area Network Flexible Data-Rate"},
+	{"flexray", "FlexRay Automotive Network"},
+	{"lin", "Local Interconnect Network"},
+	{"ipc", "Inter-Process Communication (Shared Mem/RPMsg)"},
+	{"some-ip", "Scalable service-Oriented MiddlewarE over IP"},
+	{"local", "Local function call or internal logic"},
+	{"tcp", "Transmission Control Protocol"},
+	{"udp", "User Datagram Protocol"},
 }
 
 func ParseProtocol(value string) (protocol Protocol, err error) {
