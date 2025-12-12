@@ -131,7 +131,8 @@ graph TD
         SOVD -.->|Ethernet| Zone1
         SOVD <==>|TI-IPC| DiagBridge
         VehControl <==>|Ethernet / SOMEIP| IVI["Infotainment Unit"]
-        VehControl <==>|Ethernet| TCU["Telematics Unit"] -- Link Missing in YAML -- Telematics
+        VehControl <==>|Ethernet| TCU["Telematics Unit"]
+        TCU -.->|Link Missing in YAML| Telematics
         
         VehControl <==>|TI-IPC / Shared Mem| SigGw
         
