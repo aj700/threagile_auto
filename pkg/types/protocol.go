@@ -217,7 +217,7 @@ func (what Protocol) Explain() string {
 }
 
 func (what Protocol) IsProcessLocal() bool {
-	return what == InProcessLibraryCall || what == InterProcessCommunication || what == LocalFileAccess || what == ContainerSpawning
+	return what == InProcessLibraryCall || what == InterProcessCommunication || what == LocalFileAccess || what == ContainerSpawning || what == Local || what == IPC
 }
 
 func (what Protocol) IsEncrypted() bool {

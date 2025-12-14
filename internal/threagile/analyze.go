@@ -15,7 +15,7 @@ func (what *Threagile) initAnalyze() *Threagile {
 		Short:   "Analyze model",
 		Aliases: []string{"analyze", "analyse", "run", "analyse-model"},
 		RunE: func(cmd *cobra.Command, args []string) error {
-			what.processArgs(cmd, args)
+
 			commands := what.readCommands()
 			progressReporter := DefaultProgressReporter{Verbose: what.config.GetVerbose()}
 

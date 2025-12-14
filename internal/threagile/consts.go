@@ -68,7 +68,7 @@ const (
 const (
 	ThreagileVersion = "1.0.0" // Also update into example and stub model files and openapi.yaml
 	Logo             = "  _____ _                          _ _      \n |_   _| |__  _ __ ___  __ _  __ _(_) | ___ \n   | | | '_ \\| '__/ _ \\/ _` |/ _` | | |/ _ \\\n   | | | | | | | |  __/ (_| | (_| | | |  __/\n   |_| |_| |_|_|  \\___|\\__,_|\\__, |_|_|\\___|\n                             |___/        " +
-		"\nThreagile - Agile Threat Modeling"
+		"\nThreagile - Agile Threat Modeling (Automotive Edition)"
 	VersionText = "Documentation: https://threagile.io\n" +
 		"Docker Images: https://hub.docker.com/r/threagile/threagile\n" +
 		"Sourcecode: https://github.com/threagile\n" +

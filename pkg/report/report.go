@@ -745,6 +745,7 @@ func (r *pdfReporter) defineLinkTarget(alias string) {
 }
 
 func (r *pdfReporter) createDisclaimer(parsedModel *types.Model) {
+	r.pdf.Bookmark("Disclaimer", 0, -1)
 	r.pdf.AddPage()
 	r.currentChapterTitleBreadcrumb = "Disclaimer"
 	r.defineLinkTarget("{disclaimer}")
@@ -799,6 +800,7 @@ func (r *pdfReporter) createDisclaimer(parsedModel *types.Model) {
 }
 
 func (r *pdfReporter) createManagementSummary(parsedModel *types.Model, tempFolder string) error {
+	r.pdf.Bookmark("Management Summary", 0, -1)
 	uni := r.pdf.UnicodeTranslatorFromDescriptor("")
 	r.pdf.SetTextColor(0, 0, 0)
 	title := "Management Summary"
@@ -994,6 +996,7 @@ func (r *pdfReporter) createManagementSummary(parsedModel *types.Model, tempFold
 }
 
 func (r *pdfReporter) createRiskMitigationStatus(parsedModel *types.Model, tempFolder string) error {
+	r.pdf.Bookmark("Risk Mitigation", 0, -1)
 	r.pdf.SetTextColor(0, 0, 0)
 	stillAtRisk := filteredByStillAtRisk(parsedModel)
 	count := len(stillAtRisk)
@@ -1304,6 +1307,7 @@ func (r *pdfReporter) createRiskMitigationStatus(parsedModel *types.Model, tempF
 }
 
 func (r *pdfReporter) createAssetRegister(parsedModel *types.Model) {
+	r.pdf.Bookmark("Asset Register", 0, -1)
 	uni := r.pdf.UnicodeTranslatorFromDescriptor("")
 	r.pdf.SetTextColor(0, 0, 0)
 	chapTitle := "Asset Register"
@@ -1427,10 +1431,12 @@ func makeColor(hexColor string) drawing.Color {
 }
 
 func (r *pdfReporter) createImpactInitialRisks(parsedModel *types.Model) {
+	r.pdf.Bookmark("Impact Analysis of Initial Risks", 0, -1)
 	r.renderImpactAnalysis(parsedModel, true)
 }
 
 func (r *pdfReporter) createImpactRemainingRisks(parsedModel *types.Model) {
+	r.pdf.Bookmark("Impact Analysis of Remaining Risks", 0, -1)
 	r.renderImpactAnalysis(parsedModel, false)
 }
 
@@ -1495,6 +1501,7 @@ func (r *pdfReporter) renderImpactAnalysis(parsedModel *types.Model, initialRisk
 }
 
 func (r *pdfReporter) createOutOfScopeAssets(parsedModel *types.Model) {
+	r.pdf.Bookmark("Out-of-Scope Assets", 0, -1)
 	uni := r.pdf.UnicodeTranslatorFromDescriptor("")
 	r.pdf.SetTextColor(0, 0, 0)
 	assets := "Assets"
@@ -1558,6 +1565,7 @@ func (r *pdfReporter) createOutOfScopeAssets(parsedModel *types.Model) {
 }
 
 func (r *pdfReporter) createModelFailures(parsedModel *types.Model) {
+	r.pdf.Bookmark("Potential Model Failures", 0, -1)
 	r.pdf.SetTextColor(0, 0, 0)
 	modelFailures := flattenRiskSlice(filterByModelFailures(parsedModel, parsedModel.GeneratedRisksByCategory))
 	risksStr := "Risks"
@@ -1629,6 +1637,7 @@ func flattenRiskSlice(risksByCat map[string][]*types.Risk) []*types.Risk {
 }
 
 func (r *pdfReporter) createRAA(parsedModel *types.Model, introTextRAA string) {
+	r.pdf.Bookmark("RAA Analysis", 0, -1)
 	uni := r.pdf.UnicodeTranslatorFromDescriptor("")
 	r.pdf.SetTextColor(0, 0, 0)
 	chapTitle := "RAA Analysis"
@@ -1901,6 +1910,7 @@ func firstParagraph(text string) string {
 }
 
 func (r *pdfReporter) createAssignmentByFunction(parsedModel *types.Model) {
+	r.pdf.Bookmark("Assignment by Function", 0, -1)
 	r.pdf.SetTextColor(0, 0, 0)
 	title := "Assignment by Function"
 	r.addHeadline(title, false)
@@ -2047,6 +2057,7 @@ func (r *pdfReporter) createAssignmentByFunction(parsedModel *types.Model) {
 }
 
 func (r *pdfReporter) createSTRIDE(parsedModel *types.Model) {
+	r.pdf.Bookmark("STRIDE Classification of Risks", 0, -1)
 	r.pdf.SetTextColor(0, 0, 0)
 	title := "STRIDE Classification of Identified Risks"
 	r.addHeadline(title, false)
@@ -2307,6 +2318,7 @@ func keysAsSlice(categories map[string]struct{}) []string {
 }
 
 func (r *pdfReporter) createSecurityRequirements(parsedModel *types.Model) {
+	r.pdf.Bookmark("Security Requirements", 0, -1)
 	uni := r.pdf.UnicodeTranslatorFromDescriptor("")
 	r.pdf.SetTextColor(0, 0, 0)
 	chapTitle := "Security Requirements"
@@ -2348,6 +2360,7 @@ func sortedKeysOfSecurityRequirements(parsedModel *types.Model) []string {
 }
 
 func (r *pdfReporter) createAbuseCases(parsedModel *types.Model) {
+	r.pdf.Bookmark("Abuse Cases", 0, -1)
 	r.pdf.SetTextColor(0, 0, 0)
 	chapTitle := "Abuse Cases"
 	r.addHeadline(chapTitle, false)
@@ -2388,6 +2401,7 @@ func sortedKeysOfAbuseCases(parsedModel *types.Model) []string {
 }
 
 func (r *pdfReporter) createQuestions(parsedModel *types.Model) {
+	r.pdf.Bookmark("Questions", 0, -1)
 	uni := r.pdf.UnicodeTranslatorFromDescriptor("")
 	r.pdf.SetTextColor(0, 0, 0)
 	questions := "Questions"
@@ -2436,6 +2450,7 @@ func (r *pdfReporter) createQuestions(parsedModel *types.Model) {
 }
 
 func (r *pdfReporter) createTagListing(parsedModel *types.Model) {
+	r.pdf.Bookmark("Tag Listing", 0, -1)
 	r.pdf.SetTextColor(0, 0, 0)
 	chapTitle := "Tag Listing"
 	r.addHeadline(chapTitle, false)
@@ -2531,6 +2546,7 @@ func sortedTechnicalAssetsByTitle(parsedModel *types.Model) []*types.TechnicalAs
 }
 
 func (r *pdfReporter) createRiskCategories(parsedModel *types.Model) {
+	r.pdf.Bookmark("Risks by Vulnerability Category", 0, -1)
 	uni := r.pdf.UnicodeTranslatorFromDescriptor("")
 	// category title
 	title := "Identified Risks by Vulnerability category"
@@ -2657,94 +2673,97 @@ func (r *pdfReporter) createRiskCategories(parsedModel *types.Model) {
 		html.Write(5, "Risk finding paragraphs are clickable and link to the corresponding chapter.<br>")
 		r.pdf.SetFont("Helvetica", "", fontSizeBody)
 		oldLeft, _, _, _ := r.pdf.GetMargins()
-		headlineCriticalWritten, headlineHighWritten, headlineElevatedWritten, headlineMediumWritten, headlineLowWritten := false, false, false, false, false
+
+		// Table Header
+		r.pdf.SetFont("Helvetica", "B", fontSizeVerySmall)
+		r.pdf.SetFillColor(230, 230, 230)
+		r.pdf.SetTextColor(0, 0, 0)
+		r.pdf.CellFormat(20, 6, "Severity", "1", 0, "C", true, 0, "")
+		r.pdf.CellFormat(90, 6, "Risk / Synthetic ID", "1", 0, "L", true, 0, "")
+		r.pdf.CellFormat(25, 6, "Likelihood", "1", 0, "C", true, 0, "")
+		r.pdf.CellFormat(25, 6, "Impact", "1", 0, "C", true, 0, "")
+		r.pdf.CellFormat(30, 6, "Status", "1", 0, "C", true, 0, "")
+		r.pdf.Ln(-1)
+		r.pdf.SetFont("Helvetica", "", fontSizeVerySmall)
+
 		for _, risk := range risksStr {
-			text.WriteString("<br>")
-			html.Write(5, text.String())
-			text.Reset()
-			if r.pdf.GetY() > 250 {
+			// Calculate row height based on Title wrapping
+			currentY := r.pdf.GetY()
+			// Page break check (approximate risk row height ~15-20)
+			if currentY > 260 {
 				r.pageBreak()
-				r.pdf.SetY(36)
+				currentY = r.pdf.GetY()
+				// Redraw header
+				r.pdf.SetFont("Helvetica", "B", fontSizeVerySmall)
+				r.pdf.SetFillColor(230, 230, 230)
+				r.pdf.SetTextColor(0, 0, 0)
+				r.pdf.CellFormat(20, 6, "Severity", "1", 0, "C", true, 0, "")
+				r.pdf.CellFormat(90, 6, "Risk / Synthetic ID", "1", 0, "L", true, 0, "")
+				r.pdf.CellFormat(25, 6, "Likelihood", "1", 0, "C", true, 0, "")
+				r.pdf.CellFormat(25, 6, "Impact", "1", 0, "C", true, 0, "")
+				r.pdf.CellFormat(30, 6, "Status", "1", 0, "C", true, 0, "")
+				r.pdf.Ln(-1)
+				r.pdf.SetFont("Helvetica", "", fontSizeVerySmall)
+				currentY = r.pdf.GetY()
 			}
+
+			// Determine background color for Severity
+			var rVal, gVal, bVal int
 			switch risk.Severity {
 			case types.CriticalSeverity:
-				colorCriticalRisk(r.pdf)
-				if !headlineCriticalWritten {
-					r.pdf.SetFont("Helvetica", "", fontSizeBody)
-					r.pdf.SetLeftMargin(oldLeft)
-					text.WriteString("<br><b><i>Critical Risk Severity</i></b><br><br>")
-					html.Write(5, text.String())
-					text.Reset()
-					headlineCriticalWritten = true
-				}
+				rVal, gVal, bVal = 255, 150, 150 // Pink/Redish
 			case types.HighSeverity:
-				colorHighRisk(r.pdf)
-				if !headlineHighWritten {
-					r.pdf.SetFont("Helvetica", "", fontSizeBody)
-					r.pdf.SetLeftMargin(oldLeft)
-					text.WriteString("<br><b><i>High Risk Severity</i></b><br><br>")
-					html.Write(5, text.String())
-					text.Reset()
-					headlineHighWritten = true
-				}
+				rVal, gVal, bVal = 255, 200, 200 // Light Red
 			case types.ElevatedSeverity:
-				colorElevatedRisk(r.pdf)
-				if !headlineElevatedWritten {
-					r.pdf.SetFont("Helvetica", "", fontSizeBody)
-					r.pdf.SetLeftMargin(oldLeft)
-					text.WriteString("<br><b><i>Elevated Risk Severity</i></b><br><br>")
-					html.Write(5, text.String())
-					text.Reset()
-					headlineElevatedWritten = true
-				}
+				rVal, gVal, bVal = 255, 230, 150 // Orange/Yellow
 			case types.MediumSeverity:
-				colorMediumRisk(r.pdf)
-				if !headlineMediumWritten {
-					r.pdf.SetFont("Helvetica", "", fontSizeBody)
-					r.pdf.SetLeftMargin(oldLeft)
-					text.WriteString("<br><b><i>Medium Risk Severity</i></b><br><br>")
-					html.Write(5, text.String())
-					text.Reset()
-					headlineMediumWritten = true
-				}
+				rVal, gVal, bVal = 240, 240, 240 // Light Gray
 			case types.LowSeverity:
-				colorLowRisk(r.pdf)
-				if !headlineLowWritten {
-					r.pdf.SetFont("Helvetica", "", fontSizeBody)
-					r.pdf.SetLeftMargin(oldLeft)
-					text.WriteString("<br><b><i>Low Risk Severity</i></b><br><br>")
-					html.Write(5, text.String())
-					text.Reset()
-					headlineLowWritten = true
-				}
+				rVal, gVal, bVal = 250, 250, 250 // Very Light Gray
 			default:
-				r.pdfColorBlack()
+				rVal, gVal, bVal = 255, 255, 255
 			}
-			if !risk.RiskStatus.IsStillAtRisk() {
-				r.pdfColorBlack()
-			}
-			posY := r.pdf.GetY()
-			r.pdf.SetLeftMargin(oldLeft + 10)
-			r.pdf.SetFont("Helvetica", "", fontSizeBody)
-			text.WriteString(uni(risk.Title) + ": Exploitation likelihood is <i>" + risk.ExploitationLikelihood.Title() + "</i> with <i>" + risk.ExploitationImpact.Title() + "</i> impact.")
-			text.WriteString("<br>")
-			html.Write(5, text.String())
-			text.Reset()
-			r.pdfColorGray()
-			r.pdf.SetFont("Helvetica", "", fontSizeVerySmall)
-			r.pdf.MultiCell(215, 5, uni(risk.SyntheticId), "0", "0", false)
-			r.pdf.SetFont("Helvetica", "", fontSizeBody)
+
+			// Pre-calculate height of Title column (width 90)
+			// Using dummy MultiCell call to measure height involves actually drawing it?
+			// gofpdf doesn't have "MeasureMultiCell".
+			// But we can just draw it and save the Y.
+			r.pdf.SetX(oldLeft + 20) // Skip Severity column
+
+			// We need to construct the full string for the Risk column: Title + ID
+			riskColumnText := uni(risk.Title) + "\n" + uni(risk.SyntheticId)
+
+			r.pdf.MultiCell(90, 5, riskColumnText, "1", "L", false)
+			newY := r.pdf.GetY()
+			rowHeight := newY - currentY
+
+			// Now draw the other columns with this height
+			r.pdf.SetY(currentY) // Go back to top of row
+			r.pdf.SetX(oldLeft)
+
+			// Severity
+			r.pdf.SetFillColor(rVal, gVal, bVal)
+			r.pdf.CellFormat(20, rowHeight, risk.Severity.Title(), "1", 0, "C", true, 0, "")
+
+			// Move X past Severity and Risk
+			r.pdf.SetX(oldLeft + 20 + 90)
+			r.pdf.CellFormat(25, rowHeight, risk.ExploitationLikelihood.Title(), "1", 0, "C", false, 0, "")
+			r.pdf.CellFormat(25, rowHeight, risk.ExploitationImpact.Title(), "1", 0, "C", false, 0, "")
+
+			tracking := parsedModel.GetRiskTrackingWithDefault(risk)
+			r.pdf.CellFormat(30, rowHeight, tracking.Status.Title(), "1", 0, "C", false, 0, "")
+
+			// Move Y to next row
+			r.pdf.SetY(newY)
+
+			// Add Link overlay for Risk ID if needed
 			if len(risk.MostRelevantSharedRuntimeId) > 0 {
-				r.pdf.Link(20, posY, 180, r.pdf.GetY()-posY, r.tocLinkIdByAssetId[risk.MostRelevantSharedRuntimeId])
+				r.pdf.Link(oldLeft+20, currentY, 90, rowHeight, r.tocLinkIdByAssetId[risk.MostRelevantSharedRuntimeId])
 			} else if len(risk.MostRelevantTrustBoundaryId) > 0 {
-				r.pdf.Link(20, posY, 180, r.pdf.GetY()-posY, r.tocLinkIdByAssetId[risk.MostRelevantTrustBoundaryId])
+				r.pdf.Link(oldLeft+20, currentY, 90, rowHeight, r.tocLinkIdByAssetId[risk.MostRelevantTrustBoundaryId])
 			} else if len(risk.MostRelevantTechnicalAssetId) > 0 {
-				r.pdf.Link(20, posY, 180, r.pdf.GetY()-posY, r.tocLinkIdByAssetId[risk.MostRelevantTechnicalAssetId])
+				r.pdf.Link(oldLeft+20, currentY, 90, rowHeight, r.tocLinkIdByAssetId[risk.MostRelevantTechnicalAssetId])
 			}
-			r.writeRiskTrackingStatus(parsedModel, risk)
-			r.pdf.SetLeftMargin(oldLeft)
-			html.Write(5, text.String())
-			text.Reset()
 		}
 		r.pdf.SetLeftMargin(oldLeft)
 	}
@@ -2798,6 +2817,7 @@ func (r *pdfReporter) writeRiskTrackingStatus(parsedModel *types.Model, risk *ty
 }
 
 func (r *pdfReporter) createTechnicalAssets(parsedModel *types.Model) {
+	r.pdf.Bookmark("Risks by Technical Asset", 0, -1)
 	uni := r.pdf.UnicodeTranslatorFromDescriptor("")
 	// category title
 	title := "Identified Risks by Technical Asset"
@@ -3610,6 +3630,7 @@ func (r *pdfReporter) createTechnicalAssets(parsedModel *types.Model) {
 }
 
 func (r *pdfReporter) createDataAssets(parsedModel *types.Model) {
+	r.pdf.Bookmark("Data Breach Probabilities", 0, -1)
 	uni := r.pdf.UnicodeTranslatorFromDescriptor("")
 	title := "Identified Data Breach Probabilities by Data Asset"
 	r.pdfColorBlack()
@@ -3981,6 +4002,7 @@ func isDataBreachPotentialStillAtRisk(parsedModel *types.Model, dataAsset *types
 }
 
 func (r *pdfReporter) createTrustBoundaries(parsedModel *types.Model) {
+	r.pdf.Bookmark("Trust Boundaries", 0, -1)
 	uni := r.pdf.UnicodeTranslatorFromDescriptor("")
 	title := "Trust Boundaries"
 	r.pdfColorBlack()
@@ -4110,6 +4132,7 @@ func questionsUnanswered(parsedModel *types.Model) int {
 }
 
 func (r *pdfReporter) createSharedRuntimes(parsedModel *types.Model) {
+	r.pdf.Bookmark("Shared Runtimes", 0, -1)
 	uni := r.pdf.UnicodeTranslatorFromDescriptor("")
 	title := "Shared Runtimes"
 	r.pdfColorBlack()
@@ -4191,6 +4214,7 @@ func (r *pdfReporter) createSharedRuntimes(parsedModel *types.Model) {
 }
 
 func (r *pdfReporter) createRiskRulesChecked(parsedModel *types.Model, modelFilename string, skipRiskRules []string, buildTimestamp string, threagileVersion string, modelHash string, customRiskRules types.RiskRules) {
+	r.pdf.Bookmark("Risk Rules Checked", 0, -1)
 	r.pdf.SetTextColor(0, 0, 0)
 	title := "Risk Rules Checked by Threagile"
 	r.addHeadline(title, false)
@@ -4334,6 +4358,7 @@ func (r *pdfReporter) createRiskRulesChecked(parsedModel *types.Model, modelFile
 }
 
 func (r *pdfReporter) createTargetDescription(parsedModel *types.Model, baseFolder string) error {
+	r.pdf.Bookmark("Application Overview", 0, -1)
 	uni := r.pdf.UnicodeTranslatorFromDescriptor("")
 	r.pdf.SetTextColor(0, 0, 0)
 	title := "Application Overview"
@@ -4498,6 +4523,7 @@ func getHeightWhenWidthIsFix(imageFullFilename string, width float64) (float64, 
 }
 
 func (r *pdfReporter) embedDataFlowDiagram(diagramFilenamePNG string, tempFolder string) {
+	r.pdf.Bookmark("Data-Flow Diagram", 0, -1)
 	r.pdf.SetTextColor(0, 0, 0)
 	title := "Data-Flow Diagram"
 	r.addHeadline(title, false)
@@ -4586,6 +4612,7 @@ func (r *pdfReporter) embedDataFlowDiagram(diagramFilenamePNG string, tempFolder
 }
 
 func (r *pdfReporter) embedDataRiskMapping(diagramFilenamePNG string, tempFolder string) {
+	r.pdf.Bookmark("Data Risk Mapping", 0, -1)
 	r.pdf.SetTextColor(0, 0, 0)
 	title := "Data Mapping"
 	r.addHeadline(title, false)

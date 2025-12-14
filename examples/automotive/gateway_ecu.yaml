@@ -1,5 +1,5 @@
 threagile_version: 1.0.0
-model_title: "High-Performance Gateway ECU"
+title: "High-Performance Gateway ECU"
 business_criticality: "critical"
 description: "Heterogeneous Computing Gateway with Linux (QM), Adaptive AUTOSAR (ASIL-B), Classic AUTOSAR (ASIL-D), and HSM."
 
@@ -42,6 +42,14 @@ tags_available:
   - "local"
   - "classic"
   - "vm"
+  - "jtag_locked"
+  - "secure-boot"
+  - "hardware-key-store"
+  - "firewall"
+  - "intrusion-detection"
+  - "tamper-protection"
+  - "isolation"
+  - "input-validation"
 
 data_assets:
   pki-keys:
@@ -268,7 +276,7 @@ technical_assets:
     out_of_scope: false
     size: "system"
     technology: "device"
-    tags: ["automotive", "hardware"]
+    tags: ["automotive", "hardware", "gateway", "jtag_locked", "secure-boot", "hardware-key-store", "tamper-protection", "isolation", "input-validation"]
     internet: false
     machine: "physical"
     encryption: "none"
@@ -286,7 +294,7 @@ technical_assets:
     out_of_scope: false
     size: "service"
     technology: "reverse-proxy" # Built-in
-    tags: ["linux", "security"]
+    tags: ["linux", "security", "firewall", "intrusion-detection", "input-validation"]
     internet: true
     machine: "virtual"
     encryption: "transparent"
@@ -349,7 +357,7 @@ technical_assets:
     out_of_scope: false
     size: "service"
     technology: "gateway"
-    tags: ["linux", "sovd"]
+    tags: ["linux", "sovd", "input-validation"]
     internet: false
     machine: "virtual"
     encryption: "transparent"
@@ -450,7 +458,7 @@ technical_assets:
     out_of_scope: false
     size: "service"
     technology: "gateway"
-    tags: ["adaptive", "ethernet"]
+    tags: ["adaptive", "ethernet", "input-validation"]
     internet: false
     machine: "virtual"
     encryption: "none"
@@ -506,7 +514,7 @@ technical_assets:
     out_of_scope: false
     size: "component"
     technology: "autosar-classic"
-    tags: ["classic", "diagnostics"]
+    tags: ["classic", "diagnostics", "input-validation"]
     internet: false
     machine: "physical"
     encryption: "none"

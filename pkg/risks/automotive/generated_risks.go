@@ -1,11 +1,14 @@
 package automotive
+
 import (
 	"github.com/threagile/threagile/pkg/types"
 )
+
 // This logic applies the risk to ANY technical asset tagged with "automotive"
 // It serves as a comprehensive catalog check.
 
-type RiskTS000 struct {}
+type RiskTS000 struct{}
+
 func (r *RiskTS000) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-s-000",
@@ -50,7 +53,8 @@ func (r *RiskTS000) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTS001 struct {}
+type RiskTS001 struct{}
+
 func (r *RiskTS001) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-s-001",
@@ -95,7 +99,8 @@ func (r *RiskTS001) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTS004 struct {}
+type RiskTS004 struct{}
+
 func (r *RiskTS004) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-s-004",
@@ -140,7 +145,8 @@ func (r *RiskTS004) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTS005 struct {}
+type RiskTS005 struct{}
+
 func (r *RiskTS005) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-s-005",
@@ -185,7 +191,8 @@ func (r *RiskTS005) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTS006 struct {}
+type RiskTS006 struct{}
+
 func (r *RiskTS006) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-s-006",
@@ -230,7 +237,8 @@ func (r *RiskTS006) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTS007 struct {}
+type RiskTS007 struct{}
+
 func (r *RiskTS007) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-s-007",
@@ -275,7 +283,8 @@ func (r *RiskTS007) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTS008 struct {}
+type RiskTS008 struct{}
+
 func (r *RiskTS008) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-s-008",
@@ -320,7 +329,8 @@ func (r *RiskTS008) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTS099 struct {}
+type RiskTS099 struct{}
+
 func (r *RiskTS099) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-s-099",
@@ -365,7 +375,8 @@ func (r *RiskTS099) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTT000 struct {}
+type RiskTT000 struct{}
+
 func (r *RiskTT000) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-t-000",
@@ -410,7 +421,8 @@ func (r *RiskTT000) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTT001 struct {}
+type RiskTT001 struct{}
+
 func (r *RiskTT001) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-t-001",
@@ -455,7 +467,8 @@ func (r *RiskTT001) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTT002 struct {}
+type RiskTT002 struct{}
+
 func (r *RiskTT002) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-t-002",
@@ -500,7 +513,8 @@ func (r *RiskTT002) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTT003 struct {}
+type RiskTT003 struct{}
+
 func (r *RiskTT003) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-t-003",
@@ -545,7 +559,8 @@ func (r *RiskTT003) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTT004 struct {}
+type RiskTT004 struct{}
+
 func (r *RiskTT004) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-t-004",
@@ -590,7 +605,8 @@ func (r *RiskTT004) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTT005 struct {}
+type RiskTT005 struct{}
+
 func (r *RiskTT005) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-t-005",
@@ -635,7 +651,8 @@ func (r *RiskTT005) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTT006 struct {}
+type RiskTT006 struct{}
+
 func (r *RiskTT006) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-t-006",
@@ -680,7 +697,8 @@ func (r *RiskTT006) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTT007 struct {}
+type RiskTT007 struct{}
+
 func (r *RiskTT007) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-t-007",
@@ -725,7 +743,8 @@ func (r *RiskTT007) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTT008 struct {}
+type RiskTT008 struct{}
+
 func (r *RiskTT008) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-t-008",
@@ -770,7 +789,8 @@ func (r *RiskTT008) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTT010 struct {}
+type RiskTT010 struct{}
+
 func (r *RiskTT010) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-t-010",
@@ -815,7 +835,8 @@ func (r *RiskTT010) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTT011 struct {}
+type RiskTT011 struct{}
+
 func (r *RiskTT011) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-t-011",
@@ -860,7 +881,8 @@ func (r *RiskTT011) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTT012 struct {}
+type RiskTT012 struct{}
+
 func (r *RiskTT012) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-t-012",
@@ -905,7 +927,8 @@ func (r *RiskTT012) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTT099 struct {}
+type RiskTT099 struct{}
+
 func (r *RiskTT099) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-t-099",
@@ -950,7 +973,8 @@ func (r *RiskTT099) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTR000 struct {}
+type RiskTR000 struct{}
+
 func (r *RiskTR000) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-r-000",
@@ -995,7 +1019,8 @@ func (r *RiskTR000) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTR099 struct {}
+type RiskTR099 struct{}
+
 func (r *RiskTR099) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-r-099",
@@ -1040,7 +1065,8 @@ func (r *RiskTR099) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTI000 struct {}
+type RiskTI000 struct{}
+
 func (r *RiskTI000) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-i-000",
@@ -1085,7 +1111,8 @@ func (r *RiskTI000) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTI001 struct {}
+type RiskTI001 struct{}
+
 func (r *RiskTI001) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-i-001",
@@ -1130,7 +1157,8 @@ func (r *RiskTI001) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTI008 struct {}
+type RiskTI008 struct{}
+
 func (r *RiskTI008) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-i-008",
@@ -1175,7 +1203,8 @@ func (r *RiskTI008) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTI009 struct {}
+type RiskTI009 struct{}
+
 func (r *RiskTI009) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-i-009",
@@ -1220,7 +1249,8 @@ func (r *RiskTI009) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTI005 struct {}
+type RiskTI005 struct{}
+
 func (r *RiskTI005) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-i-005",
@@ -1265,7 +1295,8 @@ func (r *RiskTI005) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTI006 struct {}
+type RiskTI006 struct{}
+
 func (r *RiskTI006) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-i-006",
@@ -1310,7 +1341,8 @@ func (r *RiskTI006) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTI007 struct {}
+type RiskTI007 struct{}
+
 func (r *RiskTI007) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-i-007",
@@ -1355,7 +1387,8 @@ func (r *RiskTI007) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTI002 struct {}
+type RiskTI002 struct{}
+
 func (r *RiskTI002) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-i-002",
@@ -1400,7 +1433,8 @@ func (r *RiskTI002) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTD000 struct {}
+type RiskTD000 struct{}
+
 func (r *RiskTD000) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-d-000",
@@ -1445,7 +1479,8 @@ func (r *RiskTD000) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTD001 struct {}
+type RiskTD001 struct{}
+
 func (r *RiskTD001) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-d-001",
@@ -1490,7 +1525,8 @@ func (r *RiskTD001) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTD002 struct {}
+type RiskTD002 struct{}
+
 func (r *RiskTD002) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-d-002",
@@ -1535,7 +1571,8 @@ func (r *RiskTD002) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTD003 struct {}
+type RiskTD003 struct{}
+
 func (r *RiskTD003) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-d-003",
@@ -1580,7 +1617,8 @@ func (r *RiskTD003) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTD004 struct {}
+type RiskTD004 struct{}
+
 func (r *RiskTD004) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-d-004",
@@ -1625,7 +1663,8 @@ func (r *RiskTD004) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTD005 struct {}
+type RiskTD005 struct{}
+
 func (r *RiskTD005) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-d-005",
@@ -1670,7 +1709,8 @@ func (r *RiskTD005) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTD006 struct {}
+type RiskTD006 struct{}
+
 func (r *RiskTD006) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-d-006",
@@ -1715,7 +1755,8 @@ func (r *RiskTD006) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTD007 struct {}
+type RiskTD007 struct{}
+
 func (r *RiskTD007) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-d-007",
@@ -1760,7 +1801,8 @@ func (r *RiskTD007) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTD008 struct {}
+type RiskTD008 struct{}
+
 func (r *RiskTD008) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-d-008",
@@ -1805,7 +1847,8 @@ func (r *RiskTD008) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTE000 struct {}
+type RiskTE000 struct{}
+
 func (r *RiskTE000) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-e-000",
@@ -1850,7 +1893,8 @@ func (r *RiskTE000) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTE001 struct {}
+type RiskTE001 struct{}
+
 func (r *RiskTE001) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-e-001",
@@ -1895,7 +1939,8 @@ func (r *RiskTE001) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTE002 struct {}
+type RiskTE002 struct{}
+
 func (r *RiskTE002) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-e-002",
@@ -1940,7 +1985,8 @@ func (r *RiskTE002) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTE003 struct {}
+type RiskTE003 struct{}
+
 func (r *RiskTE003) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-e-003",
@@ -1985,7 +2031,8 @@ func (r *RiskTE003) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTE004 struct {}
+type RiskTE004 struct{}
+
 func (r *RiskTE004) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-e-004",
@@ -2030,7 +2077,8 @@ func (r *RiskTE004) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTE005 struct {}
+type RiskTE005 struct{}
+
 func (r *RiskTE005) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-e-005",
@@ -2075,7 +2123,8 @@ func (r *RiskTE005) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTC1 struct {}
+type RiskTC1 struct{}
+
 func (r *RiskTC1) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-tc-1",
@@ -2120,7 +2169,8 @@ func (r *RiskTC1) createRisk(parsedModel *types.Model, technicalAsset *types.Tec
 	return risk
 }
 
-type RiskTM001 struct {}
+type RiskTM001 struct{}
+
 func (r *RiskTM001) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-m-001",
@@ -2165,7 +2215,8 @@ func (r *RiskTM001) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTM002 struct {}
+type RiskTM002 struct{}
+
 func (r *RiskTM002) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-m-002",
@@ -2210,7 +2261,8 @@ func (r *RiskTM002) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTM003 struct {}
+type RiskTM003 struct{}
+
 func (r *RiskTM003) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-m-003",
@@ -2255,7 +2307,8 @@ func (r *RiskTM003) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTM004 struct {}
+type RiskTM004 struct{}
+
 func (r *RiskTM004) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-m-004",
@@ -2300,7 +2353,8 @@ func (r *RiskTM004) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTM005 struct {}
+type RiskTM005 struct{}
+
 func (r *RiskTM005) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-m-005",
@@ -2345,7 +2399,8 @@ func (r *RiskTM005) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTM006 struct {}
+type RiskTM006 struct{}
+
 func (r *RiskTM006) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-m-006",
@@ -2390,7 +2445,8 @@ func (r *RiskTM006) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTM007 struct {}
+type RiskTM007 struct{}
+
 func (r *RiskTM007) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-m-007",
@@ -2435,7 +2491,8 @@ func (r *RiskTM007) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTM008 struct {}
+type RiskTM008 struct{}
+
 func (r *RiskTM008) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-m-008",
@@ -2480,7 +2537,8 @@ func (r *RiskTM008) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTM009 struct {}
+type RiskTM009 struct{}
+
 func (r *RiskTM009) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-m-009",
@@ -2525,7 +2583,8 @@ func (r *RiskTM009) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTIA001 struct {}
+type RiskTIA001 struct{}
+
 func (r *RiskTIA001) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-ia-001",
@@ -2570,7 +2629,8 @@ func (r *RiskTIA001) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTIA002 struct {}
+type RiskTIA002 struct{}
+
 func (r *RiskTIA002) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-ia-002",
@@ -2615,7 +2675,8 @@ func (r *RiskTIA002) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTIA003 struct {}
+type RiskTIA003 struct{}
+
 func (r *RiskTIA003) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-ia-003",
@@ -2660,7 +2721,8 @@ func (r *RiskTIA003) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTIA004 struct {}
+type RiskTIA004 struct{}
+
 func (r *RiskTIA004) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-ia-004",
@@ -2705,7 +2767,8 @@ func (r *RiskTIA004) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTIA005 struct {}
+type RiskTIA005 struct{}
+
 func (r *RiskTIA005) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-ia-005",
@@ -2750,7 +2813,8 @@ func (r *RiskTIA005) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTIA006 struct {}
+type RiskTIA006 struct{}
+
 func (r *RiskTIA006) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-ia-006",
@@ -2795,7 +2859,8 @@ func (r *RiskTIA006) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTIA007 struct {}
+type RiskTIA007 struct{}
+
 func (r *RiskTIA007) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-ia-007",
@@ -2840,7 +2905,8 @@ func (r *RiskTIA007) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTIA008 struct {}
+type RiskTIA008 struct{}
+
 func (r *RiskTIA008) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-ia-008",
@@ -2885,7 +2951,8 @@ func (r *RiskTIA008) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTEx001 struct {}
+type RiskTEx001 struct{}
+
 func (r *RiskTEx001) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-ex-001",
@@ -2930,7 +2997,8 @@ func (r *RiskTEx001) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTEx002 struct {}
+type RiskTEx002 struct{}
+
 func (r *RiskTEx002) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-ex-002",
@@ -2975,7 +3043,8 @@ func (r *RiskTEx002) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTEx003 struct {}
+type RiskTEx003 struct{}
+
 func (r *RiskTEx003) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-ex-003",
@@ -3020,7 +3089,8 @@ func (r *RiskTEx003) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTP001 struct {}
+type RiskTP001 struct{}
+
 func (r *RiskTP001) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-p-001",
@@ -3065,7 +3135,8 @@ func (r *RiskTP001) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTP002 struct {}
+type RiskTP002 struct{}
+
 func (r *RiskTP002) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-p-002",
@@ -3110,7 +3181,8 @@ func (r *RiskTP002) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTP003 struct {}
+type RiskTP003 struct{}
+
 func (r *RiskTP003) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-p-003",
@@ -3155,7 +3227,8 @@ func (r *RiskTP003) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTP004 struct {}
+type RiskTP004 struct{}
+
 func (r *RiskTP004) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-p-004",
@@ -3200,7 +3273,8 @@ func (r *RiskTP004) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTP005 struct {}
+type RiskTP005 struct{}
+
 func (r *RiskTP005) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-p-005",
@@ -3245,7 +3319,8 @@ func (r *RiskTP005) createRisk(parsedModel *types.Model, technicalAsset *types.T
 	return risk
 }
 
-type RiskTPe001 struct {}
+type RiskTPe001 struct{}
+
 func (r *RiskTPe001) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-pe-001",
@@ -3290,7 +3365,8 @@ func (r *RiskTPe001) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTPe002 struct {}
+type RiskTPe002 struct{}
+
 func (r *RiskTPe002) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-pe-002",
@@ -3335,7 +3411,8 @@ func (r *RiskTPe002) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTPe003 struct {}
+type RiskTPe003 struct{}
+
 func (r *RiskTPe003) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-pe-003",
@@ -3380,7 +3457,8 @@ func (r *RiskTPe003) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTPe004 struct {}
+type RiskTPe004 struct{}
+
 func (r *RiskTPe004) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-pe-004",
@@ -3425,7 +3503,8 @@ func (r *RiskTPe004) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTPe005 struct {}
+type RiskTPe005 struct{}
+
 func (r *RiskTPe005) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-pe-005",
@@ -3470,7 +3549,8 @@ func (r *RiskTPe005) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTPe006 struct {}
+type RiskTPe006 struct{}
+
 func (r *RiskTPe006) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-pe-006",
@@ -3495,7 +3575,12 @@ func (r *RiskTPe006) GenerateRisks(parsedModel *types.Model) ([]*types.Risk, err
 			continue
 		}
 		if technicalAsset.IsTaggedWithAny("automotive") {
-			risks = append(risks, r.createRisk(parsedModel, technicalAsset))
+			// Check for mitigation: CWE-1256 (tamper-protection)
+			risk := r.createRisk(parsedModel, technicalAsset)
+			if technicalAsset.IsTaggedWithAny("tamper-protection", "hardware-hardening") {
+				risk.RiskStatus = types.Mitigated
+			}
+			risks = append(risks, risk)
 		}
 	}
 	return risks, nil
@@ -3515,7 +3600,8 @@ func (r *RiskTPe006) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTPe007 struct {}
+type RiskTPe007 struct{}
+
 func (r *RiskTPe007) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-pe-007",
@@ -3560,7 +3646,8 @@ func (r *RiskTPe007) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTPe008 struct {}
+type RiskTPe008 struct{}
+
 func (r *RiskTPe008) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-pe-008",
@@ -3605,7 +3692,8 @@ func (r *RiskTPe008) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTDe001 struct {}
+type RiskTDe001 struct{}
+
 func (r *RiskTDe001) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-de-001",
@@ -3650,7 +3738,8 @@ func (r *RiskTDe001) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTDe002 struct {}
+type RiskTDe002 struct{}
+
 func (r *RiskTDe002) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-de-002",
@@ -3695,7 +3784,8 @@ func (r *RiskTDe002) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTDe003 struct {}
+type RiskTDe003 struct{}
+
 func (r *RiskTDe003) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-de-003",
@@ -3740,7 +3830,8 @@ func (r *RiskTDe003) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTDe004 struct {}
+type RiskTDe004 struct{}
+
 func (r *RiskTDe004) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-de-004",
@@ -3785,7 +3876,8 @@ func (r *RiskTDe004) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTDe005 struct {}
+type RiskTDe005 struct{}
+
 func (r *RiskTDe005) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-de-005",
@@ -3830,7 +3922,8 @@ func (r *RiskTDe005) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCa001 struct {}
+type RiskTCa001 struct{}
+
 func (r *RiskTCa001) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-ca-001",
@@ -3875,7 +3968,8 @@ func (r *RiskTCa001) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCa002 struct {}
+type RiskTCa002 struct{}
+
 func (r *RiskTCa002) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-ca-002",
@@ -3920,7 +4014,8 @@ func (r *RiskTCa002) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCa003 struct {}
+type RiskTCa003 struct{}
+
 func (r *RiskTCa003) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-ca-003",
@@ -3965,7 +4060,8 @@ func (r *RiskTCa003) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCa004 struct {}
+type RiskTCa004 struct{}
+
 func (r *RiskTCa004) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-ca-004",
@@ -4010,7 +4106,8 @@ func (r *RiskTCa004) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCa005 struct {}
+type RiskTCa005 struct{}
+
 func (r *RiskTCa005) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-ca-005",
@@ -4055,7 +4152,8 @@ func (r *RiskTCa005) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCa006 struct {}
+type RiskTCa006 struct{}
+
 func (r *RiskTCa006) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-ca-006",
@@ -4100,7 +4198,8 @@ func (r *RiskTCa006) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCa007 struct {}
+type RiskTCa007 struct{}
+
 func (r *RiskTCa007) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-ca-007",
@@ -4145,7 +4244,8 @@ func (r *RiskTCa007) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCa008 struct {}
+type RiskTCa008 struct{}
+
 func (r *RiskTCa008) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-ca-008",
@@ -4190,7 +4290,8 @@ func (r *RiskTCa008) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCa009 struct {}
+type RiskTCa009 struct{}
+
 func (r *RiskTCa009) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-ca-009",
@@ -4235,7 +4336,8 @@ func (r *RiskTCa009) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTDi001 struct {}
+type RiskTDi001 struct{}
+
 func (r *RiskTDi001) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-di-001",
@@ -4280,7 +4382,8 @@ func (r *RiskTDi001) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTDi002 struct {}
+type RiskTDi002 struct{}
+
 func (r *RiskTDi002) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-di-002",
@@ -4325,7 +4428,8 @@ func (r *RiskTDi002) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTDi003 struct {}
+type RiskTDi003 struct{}
+
 func (r *RiskTDi003) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-di-003",
@@ -4370,7 +4474,8 @@ func (r *RiskTDi003) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTDi004 struct {}
+type RiskTDi004 struct{}
+
 func (r *RiskTDi004) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-di-004",
@@ -4415,7 +4520,8 @@ func (r *RiskTDi004) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTDi005 struct {}
+type RiskTDi005 struct{}
+
 func (r *RiskTDi005) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-di-005",
@@ -4460,7 +4566,8 @@ func (r *RiskTDi005) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTDi006 struct {}
+type RiskTDi006 struct{}
+
 func (r *RiskTDi006) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-di-006",
@@ -4505,7 +4612,8 @@ func (r *RiskTDi006) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTDi007 struct {}
+type RiskTDi007 struct{}
+
 func (r *RiskTDi007) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-di-007",
@@ -4550,7 +4658,8 @@ func (r *RiskTDi007) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTDi008 struct {}
+type RiskTDi008 struct{}
+
 func (r *RiskTDi008) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-di-008",
@@ -4595,7 +4704,8 @@ func (r *RiskTDi008) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTDi009 struct {}
+type RiskTDi009 struct{}
+
 func (r *RiskTDi009) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-di-009",
@@ -4640,7 +4750,8 @@ func (r *RiskTDi009) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTLm001 struct {}
+type RiskTLm001 struct{}
+
 func (r *RiskTLm001) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-lm-001",
@@ -4685,7 +4796,8 @@ func (r *RiskTLm001) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTLm002 struct {}
+type RiskTLm002 struct{}
+
 func (r *RiskTLm002) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-lm-002",
@@ -4730,7 +4842,8 @@ func (r *RiskTLm002) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTLm003 struct {}
+type RiskTLm003 struct{}
+
 func (r *RiskTLm003) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-lm-003",
@@ -4775,7 +4888,8 @@ func (r *RiskTLm003) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTLm004 struct {}
+type RiskTLm004 struct{}
+
 func (r *RiskTLm004) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-lm-004",
@@ -4820,7 +4934,8 @@ func (r *RiskTLm004) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTLm005 struct {}
+type RiskTLm005 struct{}
+
 func (r *RiskTLm005) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-lm-005",
@@ -4865,7 +4980,8 @@ func (r *RiskTLm005) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTLm006 struct {}
+type RiskTLm006 struct{}
+
 func (r *RiskTLm006) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-lm-006",
@@ -4910,7 +5026,8 @@ func (r *RiskTLm006) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCo001 struct {}
+type RiskTCo001 struct{}
+
 func (r *RiskTCo001) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-co-001",
@@ -4955,7 +5072,8 @@ func (r *RiskTCo001) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCo002 struct {}
+type RiskTCo002 struct{}
+
 func (r *RiskTCo002) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-co-002",
@@ -5000,7 +5118,8 @@ func (r *RiskTCo002) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCo003 struct {}
+type RiskTCo003 struct{}
+
 func (r *RiskTCo003) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-co-003",
@@ -5045,7 +5164,8 @@ func (r *RiskTCo003) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCo004 struct {}
+type RiskTCo004 struct{}
+
 func (r *RiskTCo004) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-co-004",
@@ -5090,7 +5210,8 @@ func (r *RiskTCo004) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCo005 struct {}
+type RiskTCo005 struct{}
+
 func (r *RiskTCo005) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-co-005",
@@ -5135,7 +5256,8 @@ func (r *RiskTCo005) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCo006 struct {}
+type RiskTCo006 struct{}
+
 func (r *RiskTCo006) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-co-006",
@@ -5180,7 +5302,8 @@ func (r *RiskTCo006) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCo007 struct {}
+type RiskTCo007 struct{}
+
 func (r *RiskTCo007) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-co-007",
@@ -5225,7 +5348,8 @@ func (r *RiskTCo007) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCo008 struct {}
+type RiskTCo008 struct{}
+
 func (r *RiskTCo008) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-co-008",
@@ -5270,7 +5394,8 @@ func (r *RiskTCo008) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCo009 struct {}
+type RiskTCo009 struct{}
+
 func (r *RiskTCo009) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-co-009",
@@ -5315,7 +5440,8 @@ func (r *RiskTCo009) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCo010 struct {}
+type RiskTCo010 struct{}
+
 func (r *RiskTCo010) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-co-010",
@@ -5360,7 +5486,8 @@ func (r *RiskTCo010) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCo011 struct {}
+type RiskTCo011 struct{}
+
 func (r *RiskTCo011) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-co-011",
@@ -5405,7 +5532,8 @@ func (r *RiskTCo011) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCo012 struct {}
+type RiskTCo012 struct{}
+
 func (r *RiskTCo012) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-co-012",
@@ -5450,7 +5578,8 @@ func (r *RiskTCo012) createRisk(parsedModel *types.Model, technicalAsset *types.
 	return risk
 }
 
-type RiskTCac001 struct {}
+type RiskTCac001 struct{}
+
 func (r *RiskTCac001) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-cac-001",
@@ -5495,7 +5624,8 @@ func (r *RiskTCac001) createRisk(parsedModel *types.Model, technicalAsset *types
 	return risk
 }
 
-type RiskTCac002 struct {}
+type RiskTCac002 struct{}
+
 func (r *RiskTCac002) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-cac-002",
@@ -5540,7 +5670,8 @@ func (r *RiskTCac002) createRisk(parsedModel *types.Model, technicalAsset *types
 	return risk
 }
 
-type RiskTCac003 struct {}
+type RiskTCac003 struct{}
+
 func (r *RiskTCac003) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-cac-003",
@@ -5585,7 +5716,8 @@ func (r *RiskTCac003) createRisk(parsedModel *types.Model, technicalAsset *types
 	return risk
 }
 
-type RiskTCac004 struct {}
+type RiskTCac004 struct{}
+
 func (r *RiskTCac004) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-cac-004",
@@ -5630,7 +5762,8 @@ func (r *RiskTCac004) createRisk(parsedModel *types.Model, technicalAsset *types
 	return risk
 }
 
-type RiskTCac005 struct {}
+type RiskTCac005 struct{}
+
 func (r *RiskTCac005) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-cac-005",
@@ -5675,7 +5808,8 @@ func (r *RiskTCac005) createRisk(parsedModel *types.Model, technicalAsset *types
 	return risk
 }
 
-type RiskTCac006 struct {}
+type RiskTCac006 struct{}
+
 func (r *RiskTCac006) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-cac-006",
@@ -5720,7 +5854,8 @@ func (r *RiskTCac006) createRisk(parsedModel *types.Model, technicalAsset *types
 	return risk
 }
 
-type RiskTCac007 struct {}
+type RiskTCac007 struct{}
+
 func (r *RiskTCac007) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-cac-007",
@@ -5765,7 +5900,8 @@ func (r *RiskTCac007) createRisk(parsedModel *types.Model, technicalAsset *types
 	return risk
 }
 
-type RiskTExf001 struct {}
+type RiskTExf001 struct{}
+
 func (r *RiskTExf001) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-exf-001",
@@ -5810,7 +5946,8 @@ func (r *RiskTExf001) createRisk(parsedModel *types.Model, technicalAsset *types
 	return risk
 }
 
-type RiskTExf002 struct {}
+type RiskTExf002 struct{}
+
 func (r *RiskTExf002) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-exf-002",
@@ -5855,7 +5992,8 @@ func (r *RiskTExf002) createRisk(parsedModel *types.Model, technicalAsset *types
 	return risk
 }
 
-type RiskTExf003 struct {}
+type RiskTExf003 struct{}
+
 func (r *RiskTExf003) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-exf-003",
@@ -5900,7 +6038,8 @@ func (r *RiskTExf003) createRisk(parsedModel *types.Model, technicalAsset *types
 	return risk
 }
 
-type RiskTExf004 struct {}
+type RiskTExf004 struct{}
+
 func (r *RiskTExf004) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-exf-004",
@@ -5945,7 +6084,8 @@ func (r *RiskTExf004) createRisk(parsedModel *types.Model, technicalAsset *types
 	return risk
 }
 
-type RiskTExf005 struct {}
+type RiskTExf005 struct{}
+
 func (r *RiskTExf005) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-exf-005",
@@ -5990,7 +6130,8 @@ func (r *RiskTExf005) createRisk(parsedModel *types.Model, technicalAsset *types
 	return risk
 }
 
-type RiskTExf006 struct {}
+type RiskTExf006 struct{}
+
 func (r *RiskTExf006) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-exf-006",
@@ -6035,7 +6176,8 @@ func (r *RiskTExf006) createRisk(parsedModel *types.Model, technicalAsset *types
 	return risk
 }
 
-type RiskTExf007 struct {}
+type RiskTExf007 struct{}
+
 func (r *RiskTExf007) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-exf-007",
@@ -6080,7 +6222,8 @@ func (r *RiskTExf007) createRisk(parsedModel *types.Model, technicalAsset *types
 	return risk
 }
 
-type RiskTAvf001 struct {}
+type RiskTAvf001 struct{}
+
 func (r *RiskTAvf001) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-avf-001",
@@ -6125,7 +6268,8 @@ func (r *RiskTAvf001) createRisk(parsedModel *types.Model, technicalAsset *types
 	return risk
 }
 
-type RiskTAvf002 struct {}
+type RiskTAvf002 struct{}
+
 func (r *RiskTAvf002) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-avf-002",
@@ -6170,7 +6314,8 @@ func (r *RiskTAvf002) createRisk(parsedModel *types.Model, technicalAsset *types
 	return risk
 }
 
-type RiskTAvf003 struct {}
+type RiskTAvf003 struct{}
+
 func (r *RiskTAvf003) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-avf-003",
@@ -6215,7 +6360,8 @@ func (r *RiskTAvf003) createRisk(parsedModel *types.Model, technicalAsset *types
 	return risk
 }
 
-type RiskTAvf004 struct {}
+type RiskTAvf004 struct{}
+
 func (r *RiskTAvf004) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-avf-004",
@@ -6260,7 +6406,8 @@ func (r *RiskTAvf004) createRisk(parsedModel *types.Model, technicalAsset *types
 	return risk
 }
 
-type RiskTAvf005 struct {}
+type RiskTAvf005 struct{}
+
 func (r *RiskTAvf005) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-avf-005",
@@ -6305,7 +6452,8 @@ func (r *RiskTAvf005) createRisk(parsedModel *types.Model, technicalAsset *types
 	return risk
 }
 
-type RiskTAvf006 struct {}
+type RiskTAvf006 struct{}
+
 func (r *RiskTAvf006) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-avf-006",
@@ -6350,7 +6498,8 @@ func (r *RiskTAvf006) createRisk(parsedModel *types.Model, technicalAsset *types
 	return risk
 }
 
-type RiskTAvf007 struct {}
+type RiskTAvf007 struct{}
+
 func (r *RiskTAvf007) Category() *types.RiskCategory {
 	return &types.RiskCategory{
 		ID:          "automotive-t-avf-007",
@@ -6539,6 +6688,8 @@ func GetAllAutomotiveRisks() []types.RiskRule {
 		&RiskTAvf005{},
 		&RiskTAvf006{},
 		&RiskTAvf007{},
-		
+		&UnsecuredHardwareDebugPortRule{},
+		&ImproperSoCIsolationRule{},
+		&MissingInputValidationRule{},
 	}
 }

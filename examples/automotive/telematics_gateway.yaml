@@ -1,0 +1,401 @@
+threagile_version: 1.0.0
+title: "Telematics Gateway ECU (Time Master)"
+business_criticality: "critical"
+description: "Connectivity & Time Master Gateway managing 5G, V2X, GNSS, and Vehicle Time Sync."
+
+tags_available:
+  - "telematics"
+  - "automotive"
+  - "safety-critical"
+  - "cloud"
+  - "v2x"
+  - "cellular"
+  - "hardware"
+  - "linux"
+  - "security"
+  - "hsm"
+  - "ethernet"
+  - "internal"
+  - "external"
+  - "internet"
+  - "tracking"
+  - "time-master"
+  - "can-bus"
+  - "unlock-function"
+
+data_assets:
+  global-time:
+    id: "global-time"
+    description: "Trusted Global Vehicle Time (gPTP/AUTOSAR Time)"
+    usage: "business"
+    tags: ["security", "time-sync", "safety-critical"]
+    origin: "gnss-receiver"
+    owner: "oem"
+    quantity: "many"
+    confidentiality: "public"
+    integrity: "critical"
+    availability: "critical"
+    justification_integrity_rating: "Time manipulation enables replay attacks and certificate validation bypass."
+
+  esim-credentials:
+    id: "esim-credentials"
+    description: "eSIM Profiles and Network Keys"
+    usage: "business"
+    tags: ["security", "hsm", "cellular"]
+    origin: "hsm"
+    owner: "oem"
+    quantity: "very-few"
+    confidentiality: "strictly-confidential"
+    integrity: "critical"
+    availability: "critical"
+
+  v2x-private-keys:
+    id: "v2x-private-keys"
+    description: "Signing Keys for V2X Safety Messages"
+    usage: "business"
+    tags: ["security", "hsm", "v2x", "safety-critical"]
+    origin: "hsm"
+    owner: "oem"
+    quantity: "very-few"
+    confidentiality: "strictly-confidential"
+    integrity: "critical"
+    availability: "critical"
+
+  telemetry-data:
+    id: "telemetry-data"
+    description: "Vehicle Status, Diagnostics, and Usage Data"
+    usage: "business"
+    tags: ["telematics", "cloud"]
+    origin: "app-processor"
+    owner: "oem"
+    quantity: "many"
+    confidentiality: "confidential"
+    integrity: "important"
+    availability: "important"
+
+  location-data:
+    id: "location-data"
+    description: "Real-time GNSS Coordinates"
+    usage: "business"
+    tags: ["telematics", "tracking"]
+    origin: "gnss-receiver"
+    owner: "driver"
+    quantity: "many"
+    confidentiality: "strict"
+    integrity: "critical"
+    availability: "important"
+
+technical_assets:
+  # Internal Components
+  app-processor:
+    id: "app-processor"
+    description: "Application Processor (Time Master)"
+    type: "process"
+    usage: "business"
+    out_of_scope: false
+    size: "system"
+    technology: "linux"
+    tags: ["telematics", "linux", "time-master"]
+    internet: true
+    machine: "physical"
+    encryption: "transparent"
+    owner: "oem"
+    confidentiality: "confidential"
+    integrity: "critical"
+    availability: "critical"
+    data_assets_processed: ["telemetry-data", "location-data", "global-time"]
+
+  gnss-receiver:
+    id: "gnss-receiver"
+    description: "GNSS / GPS Module"
+    type: "process"
+    usage: "business"
+    out_of_scope: false
+    size: "component"
+    technology: "device"
+    tags: ["telematics", "hardware", "time-source"]
+    internet: false
+    machine: "physical"
+    encryption: "none"
+    owner: "oem"
+    confidentiality: "public"
+    integrity: "important"
+    availability: "important"
+    data_assets_processed: ["location-data", "global-time"]
+
+  hsm:
+    id: "hsm"
+    description: "Hardware Security Module"
+    type: "datastore"
+    usage: "business"
+    out_of_scope: false
+    size: "component"
+    technology: "hsm"
+    tags: ["security", "hsm"]
+    internet: false
+    machine: "physical"
+    encryption: "data-with-symmetric-shared-key"
+    owner: "oem"
+    confidentiality: "strictly-confidential"
+    integrity: "critical"
+    availability: "critical"
+    data_assets_stored: ["esim-credentials", "v2x-private-keys"]
+    
+  modem-subsystem:
+    id: "modem-subsystem"
+    description: "5G/LTE Modem Baseband"
+    type: "process"
+    usage: "business"
+    out_of_scope: false
+    size: "component"
+    technology: "device"
+    tags: ["cellular", "hardware"]
+    internet: true
+    machine: "physical"
+    encryption: "transparent"
+    owner: "oem"
+    confidentiality: "confidential"
+    integrity: "critical"
+    availability: "critical"
+    data_assets_stored: ["esim-credentials"]
+
+  v2x-radio:
+    id: "v2x-radio"
+    description: "C-V2X Radio Module"
+    type: "process"
+    usage: "business"
+    out_of_scope: false
+    size: "component"
+    technology: "device"
+    tags: ["v2x", "hardware"]
+    internet: false
+    machine: "physical"
+    encryption: "none"
+    owner: "oem"
+    confidentiality: "public"
+    integrity: "critical"
+    availability: "critical"
+
+  # Connected Systems
+  central-gateway:
+    id: "central-gateway"
+    description: "Central Vehicle Gateway ECU (Time Slave)"
+    type: "process"
+    usage: "business"
+    out_of_scope: true
+    size: "system"
+    technology: "electronic-control-unit"
+    tags: ["automotive", "internal"]
+    internet: false
+    machine: "physical"
+    encryption: "none"
+    owner: "oem"
+    confidentiality: "internal"
+    integrity: "critical"
+    availability: "critical"
+    data_assets_processed: ["global-time"]
+
+  # Unlock ECUs (CAN)
+  door-ecu-left:
+    id: "door-ecu-left"
+    description: "Driver Door Unlock ECU"
+    type: "process"
+    usage: "business"
+    out_of_scope: true
+    size: "component"
+    technology: "electronic-control-unit"
+    tags: ["automotive", "unlock-function", "can-bus"]
+    internet: false
+    machine: "physical"
+    encryption: "none"
+    owner: "oem"
+    confidentiality: "internal"
+    integrity: "critical"
+    availability: "critical"
+    data_assets_processed: ["global-time"]
+
+  door-ecu-right:
+    id: "door-ecu-right"
+    description: "Passenger Door Unlock ECU"
+    type: "process"
+    usage: "business"
+    out_of_scope: true
+    size: "component"
+    technology: "electronic-control-unit"
+    tags: ["automotive", "unlock-function", "can-bus"]
+    internet: false
+    machine: "physical"
+    encryption: "none"
+    owner: "oem"
+    confidentiality: "internal"
+    integrity: "critical"
+    availability: "critical"
+    data_assets_processed: ["global-time"]
+
+  # External Entities
+  cloud-backend:
+    id: "cloud-backend"
+    description: "OEM Cloud / OTA Server"
+    type: "process"
+    usage: "business"
+    used_as_client_by_human: false
+    out_of_scope: true
+    size: "system"
+    technology: "web-service-rest"
+    tags: ["cloud", "external"]
+    internet: true
+    machine: "virtual"
+    encryption: "transparent"
+    owner: "oem"
+    confidentiality: "confidential"
+    integrity: "critical"
+    availability: "critical"
+
+  v2x-world:
+    id: "v2x-world"
+    description: "Other Vehicles / Infrastructure (V2X)"
+    type: "external-entity"
+    usage: "business"
+    used_as_client_by_human: false
+    out_of_scope: true
+    size: "system"
+    technology: "iot-device"
+    tags: ["v2x", "external"]
+    internet: false
+    machine: "physical"
+    encryption: "none"
+    owner: "third-party"
+    confidentiality: "public"
+    integrity: "critical"
+    availability: "important"
+
+communication_links:
+  # Time Sourcing
+  gnss-time-feed:
+    source: "gnss-receiver"
+    target: "app-processor"
+    title: "PPS / NMEA Time Feed"
+    protocol: "serial"
+    usage: "business"
+    authentication: "none"
+    authorization: "none"
+    tags: ["internal", "hardware", "time-sync"]
+    data_assets_sent: ["global-time", "location-data"]
+
+  # Ethernet Time Distribution
+  ptp-to-gateway:
+    source: "app-processor"
+    target: "central-gateway"
+    title: "gPTP Time Sync (Ethernet)"
+    protocol: "udp" # Approximation for Ethernet PTP
+    usage: "business"
+    authentication: "none" # 802.1AS usually unauthenticated without MACsec
+    authorization: "none"
+    tags: ["ethernet", "time-sync", "internal"]
+    data_assets_sent: ["global-time"]
+
+  # CAN Time Distribution
+  can-time-door-left:
+    source: "app-processor"
+    target: "door-ecu-left"
+    title: "AUTOSAR Time Sync (CAN)"
+    protocol: "can-bus"
+    usage: "business"
+    authentication: "none" # Time sync on CAN usually unauthenticated
+    authorization: "none"
+    tags: ["can-bus", "time-sync", "internal"]
+    data_assets_sent: ["global-time"]
+
+  can-time-door-right:
+    source: "app-processor"
+    target: "door-ecu-right"
+    title: "AUTOSAR Time Sync (CAN)"
+    protocol: "can-bus"
+    usage: "business"
+    authentication: "none"
+    authorization: "none"
+    tags: ["can-bus", "time-sync", "internal"]
+    data_assets_sent: ["global-time"]
+
+  # Other Flows
+  cloud-uplink:
+    source: "modem-subsystem"
+    target: "cloud-backend"
+    title: "Cellular Link"
+    protocol: "https"
+    usage: "business"
+    authentication: "none"
+    authorization: "none"
+    tags: ["cellular", "internet"]
+    data_assets_sent: ["telemetry-data"]
+
+  v2x-broadcast:
+    source: "v2x-radio"
+    target: "v2x-world"
+    title: "V2X Broadcast"
+    protocol: "udp"
+    usage: "business"
+    authentication: "digital-signature"
+    authorization: "none"
+    tags: ["v2x"]
+    data_assets_sent: ["location-data"]
+
+  # Internal Hardware
+  modem-to-ap:
+    source: "modem-subsystem"
+    target: "app-processor"
+    title: "PCIe Interconnect"
+    protocol: "local-link"
+    usage: "business"
+    authentication: "none"
+    authorization: "none"
+    tags: ["internal"]
+    data_assets_sent: ["telemetry-data"]
+
+  v2x-to-ap:
+    source: "app-processor"
+    target: "v2x-radio"
+    title: "V2X Control"
+    protocol: "local-link"
+    usage: "business"
+    authentication: "none"
+    authorization: "none"
+    tags: ["internal"]
+    data_assets_sent: []
+
+  ap-to-hsm:
+    source: "app-processor"
+    target: "hsm"
+    title: "Crypto / Time Validation"
+    protocol: "serial"
+    usage: "business"
+    authentication: "none"
+    authorization: "none"
+    tags: ["internal", "security"]
+
+trust_boundaries:
+  vehicle-exterior:
+    id: "vehicle-exterior"
+    title: "Vehicle Exterior Connectivity"
+    description: "Boundary dealing with RF Signals"
+    type: "network-cloud-provider"
+    tags: ["physical"]
+    trust_boundaries_nested:
+      - "telematics-ecu-boundary"
+    technical_assets_inside:
+      - "modem-subsystem"
+      - "v2x-radio"
+      - "gnss-receiver"
+      - "central-gateway"
+      - "door-ecu-left"
+      - "door-ecu-right"
+
+  telematics-ecu-boundary:
+    id: "telematics-ecu-boundary"
+    title: "Telematics ECU Device Boundary"
+    description: "Physical boundary of the T-Box"
+    type: "hardware"
+    tags: ["physical", "hardware"]
+    technical_assets_inside:
+      - "app-processor"
+      - "hsm"

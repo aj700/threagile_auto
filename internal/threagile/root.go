@@ -301,8 +301,15 @@ func (what *Threagile) processArgs(cmd *cobra.Command, args []string) bool {
 		what.config.DataFolderValue = what.config.CleanPath(what.flags.DataFolderValue)
 	}
 
+
 	if what.isFlagOverridden(cmd, outputFlagName) {
 		what.config.OutputFolderValue = what.config.CleanPath(what.flags.OutputFolderValue)
+	} else {
+		inputFile := what.flags.InputFileValue
+		if len(inputFile) > 0 {
+			base := strings.TrimSuffix(filepath.Base(inputFile), filepath.Ext(inputFile))
+			what.config.OutputFolderValue = what.config.CleanPath(filepath.Join("output", base))
+		}
 	}
 
 	if what.isFlagOverridden(cmd, serverDirFlagName) {
