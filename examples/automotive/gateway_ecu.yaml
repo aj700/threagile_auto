@@ -48,7 +48,12 @@ tags_available:
   - "firewall"
   - "intrusion-detection"
   - "tamper-protection"
+  - "root-of-trust"
+  - "qnx"
+  - "type-1"
+  - "safety-critical"
   - "isolation"
+  - "partitioning"
   - "input-validation"
 
 data_assets:
@@ -268,20 +273,41 @@ technical_assets:
     data_assets_processed: ["vehicle-control-signals"]
 
     # Gateway Hardware Root (SoC)
-  gateway-soc:
-    id: "gateway-soc"
-    description: "J784S4-like SoC Hardware Root"
-    type: "process"
+  gateway-hw:
+    id: "gateway-hw"
+    description: "High-Performance SoC Hardware (Root of Trust)"
+    type: "process" # 'process' is generic in Threagile, used for components too
     usage: "business"
+    used_as_client_by_human: false
     out_of_scope: false
     size: "system"
     technology: "device"
-    tags: ["automotive", "hardware", "gateway", "jtag_locked", "secure-boot", "hardware-key-store", "tamper-protection", "isolation", "input-validation"]
+    tags: ["automotive", "hardware", "gateway", "jtag_locked", "secure-boot", "hardware-key-store", "tamper-protection", "isolation", "input-validation", "root-of-trust"]
     internet: false
     machine: "physical"
     encryption: "none"
     owner: "oem"
-    confidentiality: "internal"
+    confidentiality: "confidential"
+    integrity: "critical"
+    availability: "critical"
+    data_assets_stored: ["pki-keys"]
+    raa: 95 # High RAA implies it's a critical target
+
+  gateway-hypervisor:
+    id: "gateway-hypervisor"
+    description: "QNX Type-1 Hypervisor (Safety Certified)"
+    type: "process"
+    usage: "devops" # Infrastructure
+    used_as_client_by_human: false
+    out_of_scope: false
+    size: "system"
+    technology: "hypervisor"
+    tags: ["automotive", "isolation", "virtualization", "partitioning", "qnx", "type-1", "safety-critical"]
+    internet: false
+    machine: "physical" # Runs on the HW
+    encryption: "transparent"
+    owner: "oem"
+    confidentiality: "strictly-confidential"
     integrity: "critical"
     availability: "critical"
 
@@ -571,7 +597,7 @@ technical_assets:
     availability: "critical"
     communication_links:
       power-manager-to-soc:
-        target: "gateway-soc"
+        target: "gateway-hw"
         title: "Watchdog / Reset"
         protocol: "ipc"
         usage: "business"
@@ -580,14 +606,21 @@ technical_assets:
         tags: ["safety"]
 
 trust_boundaries:
+  boundary-gateway-hw:
+    id: "boundary-gateway-hw"
+    title: "Gateway SoC Hardware Boundary"
+    description: "Physical perimeter of the vehicle"
+    type: "network-dedicated-hoster"
+    tags: ["physical"]
+    technical_assets_inside:
+      - "gateway-hw"
   vehicle-boundary:
     id: "vehicle-boundary"
     title: "Vehicle Boundary"
     description: "Physical perimeter of the vehicle"
     type: "network-dedicated-hoster"
     tags: ["physical"]
-    technical_assets_inside: 
-      - "gateway-soc"
+    technical_assets_inside:
       - "zone-1-ecu"
       - "zone-2-ecu"
       - "chassis-ecu"
