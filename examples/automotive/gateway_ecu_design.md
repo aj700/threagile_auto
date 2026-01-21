@@ -12,6 +12,16 @@ The SoC resources are partitioned to ensure freedom from interference (FFI) and 
 | **MCU Cluster** | 6x Cortex-R5F | ASIL-D | **Classic AUTOSAR** | Real-time Signal Gateway, Safety Monitoring, Vehicle State Management |
 | **Security/PM** | 2x Cortex-M4F | ASIL-D | Bare-metal / Safe RTOS | **Core 1 (SMS)**: Cryptomodule Firmware (PKI/HSM) <br> **Core 2**: Power Management & Boot |
 
+
+## 2.1 Trust Boundary Architecture (Threagile Model)
+The security model enforces a strict nested sandbox hierarchy:
+1.  **Gateway-ECU Boundary**: The physical perimeter of the device.
+2.  **Gateway-Hypervisor Boundary**: A safety-critical execution environment nested within the ECU.
+3.  **VM Boundaries**:
+    -   **Linux VM (QM)**: Nested *inside* the Hypervisor boundary.
+    -   **Adaptive VM (ASIL-B)**: Nested *inside* the Hypervisor boundary.
+4.  **Classic / M4 Clusters**: Nested directly within the Gateway-ECU boundary (parallel to Hypervisor).
+
 ## 3. Network Topology & Communication Paths
 The architecture enforces strict separation of external and internal traffic.
 
@@ -66,92 +76,80 @@ The architecture enforces strict separation of external and internal traffic.
 
 ```mermaid
 graph TD
-    subgraph "External World"
+    subgraph ExternalWorld ["External World"]
         Cloud[Cloud Backend]
         OBD[OBD-II Tool]
     end
 
-    subgraph "Vehicle Networks"
+    subgraph VehicleNetworks ["Vehicle Networks"]
         Zone1[Zone ECU 1]
         Zone2[Zone ECU 2]
         Chassis[Chassis CAN]
         PT[Powertrain CAN]
     end
 
-    subgraph "Gateway ECU (J784S4-like)"
-        style Linux fill:#ffcccc,stroke:#333,stroke-width:2px,label:QM
-        style Adaptive fill:#ffffcc,stroke:#333,stroke-width:2px,label:ASIL-B
-        style Classic fill:#ccffcc,stroke:#333,stroke-width:2px,label:ASIL-D
-        style M4 fill:#e6e6e6,stroke:#333,stroke-width:2px
-
-        subgraph "A72 MPU Cluster"
+    subgraph GatewayECU ["Gateway ECU - J784S4"]
+        subgraph GatewayHypervisor ["Gateway Hypervisor - Safety Sandbox"]
             Hypervisor[Type-1 Hypervisor]
-            
-            subgraph "VM1: Embedded Linux (QM)"
-                id1(Linux Boundary)
-                RevProxy["Reverse Proxy (reverse-proxy)"]
-                OTAAgent["OTA Agent (ota-agent)"]
-                Telematics["Telematics Agent (telematics-agent)"]
-                SOVD["SOVD Gateway (sovd-gateway)"]
+
+            subgraph LinuxVM ["VM1: Linux - QM"]
+                RevProxy["Reverse Proxy"]
+                OTAAgent["OTA Agent"]
+                Telematics["Telematics Agent"]
+                SOVD["SOVD Gateway"]
             end
-            
-            subgraph "VM2: RTOS (ASIL-B)"
-                id2(Adaptive Boundary)
-                VehControl["Vehicle Control (vehicle-control)"]
-                SomeIP["SOME/IP Gateway (some-ip-gateway)"]
+
+            subgraph AdaptiveVM ["VM2: Adaptive AUTOSAR - ASIL-B"]
+                VehControl["Vehicle Control"]
+                SomeIP["SOME-IP Gateway"]
                 V2X[V2X Processor]
             end
         end
 
-        subgraph "R5 Real-Time Cluster"
-            subgraph "Classic AUTOSAR (ASIL-D)"
-                id3(Classic Boundary)
-                SigGw["Signal Gateway (signal-gateway)"]
-                SafeMgr[Safety Manager]
-                DiagBridge["Diag Bridge (diag-bridge)"]
-            end
+        subgraph ClassicCluster ["R5 Cluster: Classic AUTOSAR - ASIL-D"]
+            SigGw["Signal Gateway"]
+            SafeMgr[Safety Manager]
+            DiagBridge["Diag Bridge"]
         end
 
-        subgraph "M4 Cluster"
-            subgraph "SMS Core"
-                CryptoFW["Cryptomodule FW (crypto-fw)"]
-            end
-            PM["Power Manager (power-manager)"]
+        subgraph M4Cluster ["M4 Cluster: Security"]
+            CryptoFW["Cryptomodule FW"]
+            PM["Power Manager"]
         end
-
-        %% Connections
-        Cloud <===>|TLS| RevProxy
-        OBD <===>|DoIP| RevProxy
-        
-        RevProxy -->|IPC| SOVD
-        RevProxy -->|IPC| OTAAgent
-        RevProxy -->|IPC| Telematics
-        
-        %% Internal Ethernet
-        SOVD -.->|Ethernet| Zone1
-        SOVD <==>|TI-IPC| DiagBridge
-        VehControl <==>|Ethernet / SOMEIP| IVI["Infotainment Unit"]
-        VehControl <==>|Ethernet| TCU["Telematics Unit"]
-        TCU -.->|Link Missing in YAML| Telematics
-        
-        VehControl <==>|TI-IPC / Shared Mem| SigGw
-        
-        SigGw <==>|CAN FD| Chassis
-        SigGw <==>|CAN / CAN FD| PT["Powertrain (Mixed)"]
-        DiagBridge <==>|UDS on CAN| Chassis
-        
-        SomeIP <==>|Ethernet| Zone1
-        SomeIP <==>|Ethernet| Zone2
-        
-        SafeMgr -.->|Watchdog| Hypervisor
-        CryptoFW -.->|Secure Boot| Hypervisor
-        CryptoFW -.->|SecOC Verify| SigGw
-        
-        %% PKI Offloading
-        RevProxy -.->|PKI Req| CryptoFW
-        VehControl -.->|PKI Req| CryptoFW
-
     end
+
+    %% Styling
+    style GatewayECU fill:#eee,stroke:#333,stroke-width:2px
+    style LinuxVM fill:#ffcccc,stroke:#333,stroke-width:2px
+    style AdaptiveVM fill:#ffffcc,stroke:#333,stroke-width:2px
+    style ClassicCluster fill:#ccffcc,stroke:#333,stroke-width:2px
+    style M4Cluster fill:#e6e6e6,stroke:#333,stroke-width:2px
+
+    %% Connections
+    Cloud <--> RevProxy
+    OBD <--> RevProxy
+
+    RevProxy --> SOVD
+    RevProxy --> OTAAgent
+    RevProxy --> Telematics
+
+    SOVD -.-> Zone1
+    SOVD <--> DiagBridge
+    VehControl <--> SigGw
+
+    SigGw <--> Chassis
+    SigGw <--> PT
+    DiagBridge <--> Chassis
+
+    SomeIP <--> Zone1
+    SomeIP <--> Zone2
+
+    SafeMgr -.-> Hypervisor
+    CryptoFW -.-> Hypervisor
+    CryptoFW -.-> SigGw
+
+    RevProxy -.-> CryptoFW
+    VehControl -.-> CryptoFW
 ```
 
 ## 6. Functional Scenarios

@@ -89,6 +89,7 @@ func (what *Threagile) initFlags() *Threagile {
 	what.rootCmd.PersistentFlags().StringVar(&what.flags.riskRulePluginsValue, customRiskRulesPluginFlagName, strings.Join(what.config.GetRiskRulePlugins(), ","), "comma-separated list of plugins file names with custom risk rules to load")
 	what.rootCmd.PersistentFlags().StringVar(&what.flags.skipRiskRulesValue, skipRiskRulesFlagName, strings.Join(what.config.GetSkipRiskRules(), ","), "comma-separated list of risk rules (by their ID) to skip")
 	what.rootCmd.PersistentFlags().StringVar(&what.flags.ExecuteModelMacroValue, executeModelMacroFlagName, what.config.GetExecuteModelMacro(), "macro to execute")
+	what.rootCmd.PersistentFlags().StringVar(&what.flags.PresetValue, presetFlagName, "", "preset configuration (options: automotive)")
 
 	// RiskExcelValue not available as flags
 
@@ -301,7 +302,6 @@ func (what *Threagile) processArgs(cmd *cobra.Command, args []string) bool {
 		what.config.DataFolderValue = what.config.CleanPath(what.flags.DataFolderValue)
 	}
 
-
 	if what.isFlagOverridden(cmd, outputFlagName) {
 		what.config.OutputFolderValue = what.config.CleanPath(what.flags.OutputFolderValue)
 	} else {
@@ -390,6 +390,25 @@ func (what *Threagile) processArgs(cmd *cobra.Command, args []string) bool {
 
 	if what.isFlagOverridden(cmd, skipRiskRulesFlagName) {
 		what.config.SkipRiskRulesValue = strings.Split(what.flags.skipRiskRulesValue, ",")
+	}
+
+	if what.isFlagOverridden(cmd, presetFlagName) {
+		if strings.ToLower(what.flags.PresetValue) == "automotive" {
+			automotiveSkipRules := []string{
+				"container-baseimage-backdooring",
+				"container-platform-escape",
+				"cross-site-request-forgery",
+				"cross-site-scripting",
+				"ldap-injection",
+				"missing-cloud-hardening",
+				"missing-waf",
+				"search-query-injection",
+				"server-side-request-forgery",
+				"sql-nosql-injection",
+				"xml-external-entity",
+			}
+			what.config.SkipRiskRulesValue = append(what.config.SkipRiskRulesValue, automotiveSkipRules...)
+		}
 	}
 
 	if what.isFlagOverridden(cmd, executeModelMacroFlagName) {

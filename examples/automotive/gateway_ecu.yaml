@@ -19,6 +19,7 @@ tags_available:
   - "cloud"
   - "hardware"
   - "virtualization"
+  - "hypervisor"
   - "qm"
   - "asil-b"
   - "asil-d"
@@ -606,27 +607,30 @@ technical_assets:
         tags: ["safety"]
 
 trust_boundaries:
-  boundary-gateway-hw:
-    id: "boundary-gateway-hw"
-    title: "Gateway SoC Hardware Boundary"
-    description: "Physical perimeter of the vehicle"
+  gateway-ecu-boundary:
+    id: "gateway-ecu-boundary"
+    title: "Gateway ECU"
+    description: "Physical perimeter of the Gateway ECU Hardware"
     type: "network-dedicated-hoster"
-    tags: ["physical"]
+    tags: ["physical", "gateway"]
     technical_assets_inside:
       - "gateway-hw"
-  vehicle-boundary:
-    id: "vehicle-boundary"
-    title: "Vehicle Boundary"
-    description: "Physical perimeter of the vehicle"
-    type: "network-dedicated-hoster"
-    tags: ["physical"]
+    trust_boundaries_nested:
+      - "gateway-hypervisor-boundary"
+      - "classic-r5-boundary"
+      - "m4-cluster-boundary"
+
+  gateway-hypervisor-boundary:
+    id: "gateway-hypervisor-boundary"
+    title: "Gateway Hypervisor"
+    description: "QNX Hypervisor Execution Environment"
+    type: "execution-environment"
+    tags: ["hypervisor", "qnx", "safety-critical"]
     technical_assets_inside:
-      - "zone-1-ecu"
-      - "zone-2-ecu"
-      - "chassis-ecu"
-      - "powertrain-ecu"
-      - "tcu"
-      - "ivi"
+      - "gateway-hypervisor"
+    trust_boundaries_nested:
+      - "linux-vm-boundary"
+      - "adaptive-vm-boundary"
 
   linux-vm-boundary:
     id: "linux-vm-boundary"
@@ -669,3 +673,17 @@ trust_boundaries:
     technical_assets_inside:
       - "crypto-fw"
       - "power-manager"
+
+  vehicle-boundary:
+    id: "vehicle-boundary"
+    title: "Vehicle Boundary"
+    description: "Physical perimeter of the vehicle"
+    type: "network-dedicated-hoster"
+    tags: ["physical"]
+    technical_assets_inside:
+      - "zone-1-ecu"
+      - "zone-2-ecu"
+      - "chassis-ecu"
+      - "powertrain-ecu"
+      - "tcu"
+      - "ivi"

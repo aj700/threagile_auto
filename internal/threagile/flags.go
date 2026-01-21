@@ -46,6 +46,7 @@ const (
 	diagramDpiFlagName               = "diagram-dpi"
 	graphvizDpiFlagName              = "graphviz-dpi"
 	backupHistoryFilesToKeepFlagName = "backup-history-files-to-keep"
+	presetFlagName                   = "preset"
 
 	addModelTitleFlagName              = "add-model-title"
 	keepDiagramSourceFilesFlagName     = "keep-diagram-source-files"
@@ -78,6 +79,7 @@ type Flags struct {
 	configFlag           string
 	riskRulePluginsValue string
 	skipRiskRulesValue   string
+	PresetValue          string
 
 	generateDataFlowDiagramFlag     bool // deprecated
 	generateDataAssetDiagramFlag    bool // deprecated
